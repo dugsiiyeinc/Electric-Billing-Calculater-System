@@ -49,6 +49,7 @@ const Navbar = () => {
         </a>
 
         {/* Mobile Menu Button */}
+
         <button
           className="lg:hidden p-2 rounded-md text-gray-700 focus:outline-none"
           onClick={toggleDrawerBtn}
@@ -59,7 +60,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileDrawerOpen && (
-        <div className="lg:hidden bg-white shadow-md rounded-lg py-4 absolute w-full left-0 top-full">
+        <div className="lg:hidden bg-white shadow-md py-4 absolute w-full left-0 top-full">
           <ul className="flex flex-col space-y-4 text-center text-gray-600 text-lg">
             <li>
               <a
