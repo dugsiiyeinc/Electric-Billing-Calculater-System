@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import Feature from "./components/Feature";
+import Testomonial from "./components/Testomonial";
+
 
 
 const App = () => {
@@ -10,6 +12,7 @@ const App = () => {
       <Navbar />
       <HeroSection />
       <Feature/>
+      <Testomonial/>
     </div>
   );
 };
