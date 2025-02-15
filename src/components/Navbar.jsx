@@ -48,6 +48,11 @@ const Navbar = () => {
           Log In
         </a>
       </div>
+      <div>
+        <button onClick={toggleDrawerBtn}>
+          {mobileDrawerOpen ? <X /> : <Menu />}
+        </button>
+      </div>
     </nav>
   );
 };
