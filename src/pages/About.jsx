@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import { RiLightbulbFlashLine } from 'react-icons/ri'
 import KeyFeatures from '../components/KeyFeatures'
 import Benefits from '../components/Benefits'
+import TeamMembers from '../components/TeamMembers'
 
 const About = () => {
   return (
@@ -52,7 +53,7 @@ const About = () => {
             Get Started
           </a>
         </div>
-
+        <TeamMembers />
         </div>
        </div>
     </div>
