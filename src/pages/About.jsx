@@ -40,6 +40,19 @@ const About = () => {
 
         <KeyFeatures />
         <Benefits />
+        <div className="mt-16 text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900">Start Saving Today</h2>
+          <p className="mt-4 text-xl text-gray-500">
+            Join thousands of users who are already benefiting from our Electric Billing system.
+          </p>
+          <a
+            href="#"
+            className="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+          >
+            Get Started
+          </a>
+        </div>
+
         </div>
        </div>
     </div>
