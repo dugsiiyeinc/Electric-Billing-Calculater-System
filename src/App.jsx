@@ -1,13 +1,10 @@
+import React from "react";
+import Navbar from "./components/Navbar";
 
-function App() {
+const App = () => {
+  return <div>
+    <Navbar/>
+  </div>;
+};
 
-
-  return (
-  <>
-  <h1>Currency Exchange & user Management system</h1>
-
-  </>
-  )
-}
-
-export default App
+export default App;
