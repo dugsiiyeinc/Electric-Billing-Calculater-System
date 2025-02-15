@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaBolt, FaChartLine, FaMoneyBillWave } from 'react-icons/fa'
 
 const KeyFeatures = () => {
     const keyFeaturesData = [
