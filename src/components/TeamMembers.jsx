@@ -20,7 +20,24 @@ const TeamMembers = () => {
       ];
   return (
     <div className="mt-12 ">
-      
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Our Team</h2>
+      <div className="flex flex-wrap justify-center gap-6">
+        {teamMembersData.map((member, index) => (
+          <div key={index} className="bg-gray-50 rounded-lg shadow-md p-6 w-full lg:w-72 text-center">
+            {member.imageUrl ? (
+              <img
+                src={member.imageUrl}
+                alt={member.name}
+                className="w-24 h-24 rounded-full mx-auto mb-4 object-fill"
+              />
+            ) : (
+              <FaUserCircle className="w-24 h-24 text-gray-400 mx-auto mb-4" />
+            )}
+            <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
+            <p className="text-gray-600">{member.role}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
