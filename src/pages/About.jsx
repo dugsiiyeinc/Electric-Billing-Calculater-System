@@ -1,11 +1,22 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import { RiLightbulbFlashLine } from 'react-icons/ri'
 
 const About = () => {
   return (
     <div  className="min-h-screen bg-gray-100 ">
         <Navbar />
-      
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <RiLightbulbFlashLine className="mx-auto h-20 w-20 text-indigo-700" />
+          <h1 className="mt-4 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            About Electric Billing
+          </h1>
+          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+            A smart and efficient solution designed to help users calculate and track their monthly electricity costs.
+          </p>
+        </div>
+        </div>
     </div>
   )
 }
