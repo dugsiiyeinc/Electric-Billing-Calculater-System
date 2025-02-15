@@ -1,25 +1,38 @@
 import React from "react";
+import { X, Menu } from "lucide-react";
 
 const Navbar = () => {
-  return (
+    
+
+    return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md">
-      <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <h3 className="text-xl font-semibold text-gray-800">Electric Billing</h3>
+        <h3 className="text-xl font-semibold text-gray-800">
+          Electric Billing
+        </h3>
 
         {/* Navigation Links */}
-        <ul className="hidden lg:flex space-x-8 text-gray-700  text-lg font-medium">
+        <ul className="hidden lg:flex space-x-8 text-gray-600  text-lg font-normal">
           <li>
-            <a href="#home" className="hover:text-blue-500 transition">Home</a>
+            <a href="#home" className="hover:text-blue-500 transition">
+              Home
+            </a>
           </li>
           <li>
-            <a href="#features" className="hover:text-blue-500 transition">Features</a>
+            <a href="#features" className="hover:text-blue-500 transition">
+              Features
+            </a>
           </li>
           <li>
-            <a href="#testimonials" className="hover:text-blue-500 transition">Testimonials</a>
+            <a href="#testimonials" className="hover:text-blue-500 transition">
+              Testimonials
+            </a>
           </li>
           <li>
-            <a href="#footer" className="hover:text-blue-500 transition">Footer</a>
+            <a href="#footer" className="hover:text-blue-500 transition">
+              Footer
+            </a>
           </li>
         </ul>
 
@@ -31,7 +44,6 @@ const Navbar = () => {
           Log In
         </a>
 
-        {/* Mobile Menu Placeholder (if needed in future) */}
       </div>
     </nav>
   );
