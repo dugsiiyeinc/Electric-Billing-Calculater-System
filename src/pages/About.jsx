@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import { RiLightbulbFlashLine } from 'react-icons/ri'
+import KeyFeatures from '../components/KeyFeatures'
 
 const About = () => {
   return (
@@ -36,7 +37,7 @@ const About = () => {
               </p>
             </div>
 
-        
+        <KeyFeatures />
         </div>
        </div>
     </div>
