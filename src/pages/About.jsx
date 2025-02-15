@@ -4,6 +4,7 @@ import { RiLightbulbFlashLine } from 'react-icons/ri'
 import KeyFeatures from '../components/KeyFeatures'
 import Benefits from '../components/Benefits'
 import TeamMembers from '../components/TeamMembers'
+import Footer from '../components/Footer'
 
 const About = () => {
   return (
@@ -55,7 +56,9 @@ const About = () => {
         </div>
         <TeamMembers />
         </div>
+       
        </div>
+       <Footer />
     </div>
   )
 }
