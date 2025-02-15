@@ -1,22 +1,23 @@
+// In your App component or wherever you use the routes
 import React from "react";
+import { useRoutes } from "react-router-dom";
+import Home from "../src/pages/Home";
+import About from "../src/components/About";
 import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import Feature from "./components/Feature";
-import Testomonial from "./components/Testomonial";
-import Footer from "./components/Footer";
-import About from "./pages/About";
-
 const App = () => {
-  return (
-    <div>
-      {/* <Navbar />
-      <HeroSection />
-      <Feature />
-      <Testomonial />
-      <Footer/> */}
-      <About />
-    </div>
-  );
+  <Navbar />
+  const routes = useRoutes([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/about",
+      element: <About />,
+    },
+  ]);
+
+  return routes;
 };
 
 export default App;

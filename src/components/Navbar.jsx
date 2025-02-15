@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { X, Menu } from "lucide-react";
-import { Link } from "react-scroll"; 
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -10,60 +11,70 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md" >
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md" id="home">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <h3 className="text-xl font-semibold text-gray-800">
+        <RouterLink to="/" className="text-xl font-semibold text-gray-800">
           Electric Billing
-        </h3>
+        </RouterLink>
 
         {/* Desktop Navigation Links */}
         <ul className="hidden lg:flex space-x-8 text-gray-600 text-lg font-normal cursor-pointer">
           <li>
-            <Link 
-              to="home" 
-              smooth={true} 
-              duration={500} 
-              className="hover:text-blue-500 transition">
+            <RouterLink
+              to="/"
+              className="hover:text-blue-500 transition"
+            >
               Home
-            </Link>
+            </RouterLink>
           </li>
           <li>
-            <Link 
-              to="features" 
-              smooth={true} 
-              duration={500} 
-              className="hover:text-blue-500 transition">
+            <NavLink
+              to="/about"
+              className="hover:text-blue-500 transition"
+            >
+              About
+            </NavLink>
+          </li>
+          <li>
+            <ScrollLink
+              to="features"
+              smooth={true}
+              duration={500}
+              className="hover:text-blue-500 transition"
+            >
               Features
-            </Link>
+            </ScrollLink>
           </li>
           <li>
-            <Link 
-              to="testimonials" 
-              smooth={true} 
-              duration={500} 
-              className="hover:text-blue-500 transition">
+            <ScrollLink
+              to="testimonials"
+              smooth={true}
+              duration={500}
+              className="hover:text-blue-500 transition"
+            >
               Testimonials
-            </Link>
+            </ScrollLink>
           </li>
           <li>
-            <Link 
-              to="footer" 
-              smooth={true} 
-              duration={500} 
-              className="hover:text-blue-500 transition">
+            <ScrollLink
+              to="footer"
+              smooth={true}
+              duration={500}
+              className="hover:text-blue-500 transition"
+            >
               Footer
-            </Link>
+            </ScrollLink>
           </li>
         </ul>
 
         {/* Login Button (Desktop) */}
-        <a
-          href="#login"
+        <RouterLink
+          to="/login"
           className="hidden lg:block bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
         >
           Log In
-        </a>
+        </RouterLink>
 
         {/* Mobile Menu Button */}
         <button
@@ -79,53 +90,64 @@ const Navbar = () => {
         <div className="lg:hidden bg-white shadow-md py-4 absolute w-full left-0 top-full">
           <ul className="flex flex-col space-y-4 text-center text-gray-600 text-lg">
             <li>
-              <Link 
-                to="home" 
-                smooth={true} 
-                duration={500} 
+              <RouterLink
+                to="/"
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}>
+                onClick={toggleDrawerBtn}
+              >
                 Home
-              </Link>
+              </RouterLink>
             </li>
             <li>
-              <Link 
-                to="features" 
-                smooth={true} 
-                duration={500} 
+              <NavLink
+                to="/about"
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}>
+                onClick={toggleDrawerBtn}
+              >
+                About
+              </NavLink>
+            </li>
+            <li>
+              <ScrollLink
+                to="features"
+                smooth={true}
+                duration={500}
+                className="block py-2 hover:text-blue-500 transition"
+                onClick={toggleDrawerBtn}
+              >
                 Features
-              </Link>
+              </ScrollLink>
             </li>
             <li>
-              <Link 
-                to="testimonials" 
-                smooth={true} 
-                duration={500} 
+              <ScrollLink
+                to="testimonials"
+                smooth={true}
+                duration={500}
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}>
+                onClick={toggleDrawerBtn}
+              >
                 Testimonials
-              </Link>
+              </ScrollLink>
             </li>
             <li>
-              <Link 
-                to="footer" 
-                smooth={true} 
-                duration={500} 
+              <ScrollLink
+                to="footer"
+                smooth={true}
+                duration={500}
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}>
+                onClick={toggleDrawerBtn}
+              >
                 Footer
-              </Link>
+              </ScrollLink>
             </li>
             <li>
-              <a
-                href="#login"
+              <RouterLink
+                to="/login"
                 className="block bg-blue-500 text-white mx-6 px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
                 onClick={toggleDrawerBtn}
               >
                 Log In
-              </a>
+              </RouterLink>
             </li>
           </ul>
         </div>
