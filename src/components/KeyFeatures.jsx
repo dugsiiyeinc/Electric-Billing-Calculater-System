@@ -25,9 +25,21 @@ const KeyFeatures = () => {
     ]
 
   return (
-    <div>
-      
+    <div className="mt-16">
+    <h2 className="text-3xl font-extrabold text-gray-900 text-center">Key Features</h2>
+    <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+     {
+       keyFeaturesData.map(keyFeature =>(
+           <div key={keyFeature.id} className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+           {keyFeature.icon}
+           <h3 className="mt-4 text-xl font-semibold text-gray-800">{keyFeature.title}</h3>
+           <p className="mt-2 text-gray-600 text-center">{keyFeature.description}</p>
+         </div>
+       ))
+     }
     </div>
+  </div>
+
   )
 }
 
