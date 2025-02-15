@@ -1,13 +1,20 @@
+import React from "react";
+import Navbar from "./components/Navbar";
+import HeroSection from "./components/HeroSection";
+import Feature from "./components/Feature";
+import Testomonial from "./components/Testomonial";
+import Footer from "./components/Footer";
 
-function App() {
-
-
+const App = () => {
   return (
-  <>
-  <h1>Currency Exchange & user Management system</h1>
+    <div>
+      <Navbar />
+      <HeroSection />
+      <Feature />
+      <Testomonial />
+      <Footer/>
+    </div>
+  );
+};
 
-  </>
-  )
-}
-
-export default App
+export default App;
