@@ -16,7 +16,19 @@ const About = () => {
             A smart and efficient solution designed to help users calculate and track their monthly electricity costs.
           </p>
         </div>
+        <div className="mt-16">
+          
+            <div className="bg-white rounded-lg shadow-md px-4 py-5 sm:p-6 ">
+              <h2 className="text-3xl font-extrabold text-gray-900">Our Mission</h2>
+              <p className="mt-4 text-gray-600">
+                Our mission is to empower individuals and businesses with accurate and transparent electricity cost
+                tracking. By providing a user-friendly platform for monitoring energy consumption, we aim to promote
+                smarter energy usage, reduce unnecessary expenses, and contribute to a more energy-efficient future.
+              </p>
+            </div>
+        
         </div>
+       </div>
     </div>
   )
 }
