@@ -48,15 +48,15 @@ const Testimonials = () => {
             <div
               key={index}
               className={`
-        bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out
-        ${index === 2 ? "md:col-span-2" : ""} 
-      `}
+                bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out
+                ${index === 2 ? "md:col-span-2 lg:col-span-1" : ""} // Span 2 on md, revert to 1 on lg
+              `}
             >
               <div className="flex items-center justify-center mb-4">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="size-16 rounded-full object-cover"
                 />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
