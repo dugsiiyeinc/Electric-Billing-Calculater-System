@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { X, Menu } from "lucide-react";
+import { Link } from "react-scroll"; 
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -9,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md" >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <h3 className="text-xl font-semibold text-gray-800">
@@ -17,26 +18,42 @@ const Navbar = () => {
         </h3>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden lg:flex space-x-8 text-gray-600 text-lg font-normal">
+        <ul className="hidden lg:flex space-x-8 text-gray-600 text-lg font-normal cursor-pointer">
           <li>
-            <a href="#home" className="hover:text-blue-500 transition">
+            <Link 
+              to="home" 
+              smooth={true} 
+              duration={500} 
+              className="hover:text-blue-500 transition">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#features" className="hover:text-blue-500 transition">
+            <Link 
+              to="features" 
+              smooth={true} 
+              duration={500} 
+              className="hover:text-blue-500 transition">
               Features
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#testimonials" className="hover:text-blue-500 transition">
+            <Link 
+              to="testimonials" 
+              smooth={true} 
+              duration={500} 
+              className="hover:text-blue-500 transition">
               Testimonials
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#footer" className="hover:text-blue-500 transition">
+            <Link 
+              to="footer" 
+              smooth={true} 
+              duration={500} 
+              className="hover:text-blue-500 transition">
               Footer
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -49,7 +66,6 @@ const Navbar = () => {
         </a>
 
         {/* Mobile Menu Button */}
-
         <button
           className="lg:hidden p-2 rounded-md text-gray-700 focus:outline-none"
           onClick={toggleDrawerBtn}
@@ -63,40 +79,44 @@ const Navbar = () => {
         <div className="lg:hidden bg-white shadow-md py-4 absolute w-full left-0 top-full">
           <ul className="flex flex-col space-y-4 text-center text-gray-600 text-lg">
             <li>
-              <a
-                href="#home"
+              <Link 
+                to="home" 
+                smooth={true} 
+                duration={500} 
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
+                onClick={toggleDrawerBtn}>
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#features"
+              <Link 
+                to="features" 
+                smooth={true} 
+                duration={500} 
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
+                onClick={toggleDrawerBtn}>
                 Features
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#testimonials"
+              <Link 
+                to="testimonials" 
+                smooth={true} 
+                duration={500} 
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
+                onClick={toggleDrawerBtn}>
                 Testimonials
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#footer"
+              <Link 
+                to="footer" 
+                smooth={true} 
+                duration={500} 
                 className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
+                onClick={toggleDrawerBtn}>
                 Footer
-              </a>
+              </Link>
             </li>
             <li>
               <a

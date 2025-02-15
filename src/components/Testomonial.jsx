@@ -29,7 +29,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="bg-white py-16 md:py-24 lg:py-32 px-6">
+    <section className="bg-white py-16 md:py-24 lg:py-32 px-6" id="testimonials">
       <div className="container mx-auto text-center">
         {/* Section Header */}
         <header className="mb-12 md:mb-16 lg:mb-20">
