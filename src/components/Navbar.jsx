@@ -16,8 +16,8 @@ const Navbar = () => {
           Electric Billing
         </h3>
 
-        {/* Navigation Links */}
-        <ul className="hidden lg:flex space-x-8 text-gray-600  text-lg font-normal">
+        {/* Desktop Navigation Links */}
+        <ul className="hidden lg:flex space-x-8 text-gray-600 text-lg font-normal">
           <li>
             <a href="#home" className="hover:text-blue-500 transition">
               Home
@@ -40,19 +40,75 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Login Button */}
+        {/* Login Button (Desktop) */}
         <a
           href="#login"
           className="hidden lg:block bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
         >
           Log In
         </a>
-      </div>
-      <div>
-        <button onClick={toggleDrawerBtn}>
-          {mobileDrawerOpen ? <X /> : <Menu />}
+
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden p-2 rounded-md text-gray-700 focus:outline-none"
+          onClick={toggleDrawerBtn}
+        >
+          {mobileDrawerOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileDrawerOpen && (
+        <div className="lg:hidden bg-white shadow-md rounded-lg py-4 absolute w-full left-0 top-full">
+          <ul className="flex flex-col space-y-4 text-center text-gray-600 text-lg">
+            <li>
+              <a
+                href="#home"
+                className="block py-2 hover:text-blue-500 transition"
+                onClick={toggleDrawerBtn}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="#features"
+                className="block py-2 hover:text-blue-500 transition"
+                onClick={toggleDrawerBtn}
+              >
+                Features
+              </a>
+            </li>
+            <li>
+              <a
+                href="#testimonials"
+                className="block py-2 hover:text-blue-500 transition"
+                onClick={toggleDrawerBtn}
+              >
+                Testimonials
+              </a>
+            </li>
+            <li>
+              <a
+                href="#footer"
+                className="block py-2 hover:text-blue-500 transition"
+                onClick={toggleDrawerBtn}
+              >
+                Footer
+              </a>
+            </li>
+            <li>
+              <a
+                href="#login"
+                className="block bg-blue-500 text-white mx-6 px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+                onClick={toggleDrawerBtn}
+              >
+                Log In
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };
