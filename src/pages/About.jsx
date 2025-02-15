@@ -26,6 +26,16 @@ const About = () => {
                 smarter energy usage, reduce unnecessary expenses, and contribute to a more energy-efficient future.
               </p>
             </div>
+            <div className="bg-white rounded-lg shadow-md px-4 py-5 sm:p-6 mt-4">
+              <h2 className="text-3xl font-extrabold text-gray-900">Our Vision</h2>
+              <p className="mt-4 text-gray-600">
+                Our vision is to become a leading digital solution for electricity billing and energy management, making
+                it easier for users to understand their consumption patterns. We aspire to create a world where
+                technology helps people make informed decisions about energy usage, leading to cost savings and a more
+                sustainable environment.
+              </p>
+            </div>
+
         
         </div>
        </div>
