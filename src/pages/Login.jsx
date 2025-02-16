@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import toast from 'react-hot-toast';
 
 const Login = () => {
 
@@ -23,7 +24,8 @@ const Login = () => {
         if(existUser){
             localStorage.setItem("onlineUser",JSON.stringify(existUser));
         }else{
-            alert("invalid credentials!");
+        
+            toast.error("invalid credentials!")
         }
 
     }
