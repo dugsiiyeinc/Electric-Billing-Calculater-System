@@ -9,21 +9,30 @@ const Registration = () => {
     email:"",
     phone:"",
     defaultCompany:"",
-    profilePic:"",
+    profilePic:null,
     password:"",
     confirmPassword:""
   });
 
+  const handleChange = (e) =>{
+    const {name,value} = e.target;
+
+    setRegistrationData((prev) => ({...prev, [name]:value}));
+  }
   return (
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
       <div className="flex justify-center items-center  px-4 py-16">
-        <form className="bg-white w-md py-6 px-4 rounded-lg space-y-2">
+        <form 
+
+        className="bg-white w-md py-6 px-4 rounded-lg space-y-2">
           <h2 className="text-2xl text-center mb-4 font-bold ">Registration</h2>
           <div className="flex flex-col space-y-2">
             <input
               type="text"
               name="username"
+              value={registrationData.username}
+              onChange={handleChange}
               placeholder="Enter username"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
@@ -32,14 +41,18 @@ const Registration = () => {
             <input
               type="email"
               name="email"
+              value={registrationData.email}
+              onChange={handleChange}
               placeholder="Enter Your Email"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
           </div>
           <div className="flex flex-col space-y-2">
             <input
-              type="phone"
+              type="text"
               name="phone"
+              value={registrationData.phone}
+              onChange={handleChange}
               placeholder="Enter Your Phone"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
@@ -47,6 +60,8 @@ const Registration = () => {
           <div className="flex flex-col space-y-2">
             <select
               name="company"
+              value={registrationData.defaultCompany}
+              onChange={handleChange}
               className="w-full border border-gray-300 py-1 px-3 rounded"
             >
               <option value="">Select your company </option>
@@ -65,6 +80,8 @@ const Registration = () => {
             <input
               type="password"
               name="password"
+              value={registrationData.password}
+              onChange={handleChange}
               placeholder="Enter Your password"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
@@ -73,6 +90,8 @@ const Registration = () => {
             <input
               type="confirmPassword"
               name="confirmPassword"
+              value={registrationData.confirmPassword}
+              onChange={handleChange}
               placeholder="Confirm Your Password"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
