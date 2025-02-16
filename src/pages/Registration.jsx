@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import toast from "react-hot-toast";
 
 
 const Registration = () => {
@@ -121,14 +122,15 @@ const Registration = () => {
       const existUser = oldUsers.find(user => user.username === registrationData.username || 
         user.email === registrationData.email);
         if(existUser){
-          alert("user Already exists please use unique email and name");
+         
+          toast.error("user Already exists please use unique email and name")
           return;
         }else{
-          alert("success");
           console.log(registrationData);
           setUsers([...users,registrationData]);
           console.log(users);
           localStorage.setItem("users",JSON.stringify(users));
+          toast.success("user registration successfully");
           reset();
         }
      
