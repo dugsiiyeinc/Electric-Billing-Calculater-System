@@ -1,41 +1,75 @@
 import React, { useState } from "react";
 
-const BillingCalculater = () => {
-  const [units, setUnites] = useState("");
-  const [theBillAmount, setTheBillAmount] = useState(null);
+const BillingCalculator = () => {
+  const [units, setUnits] = useState("");
+  const [billAmount, setBillAmount] = useState(null);
+  const [error, setError] = useState("");
+  const calculateBill = () => {
+    if (units === "") {
+      setError("Please enter the number of units");
+      setBillAmount(null);
+      return;
+    }
 
-  const calculateTheBill = () => {
+    const unitConsumed = parseFloat(units);
+    if (isNaN(unitConsumed) || unitConsumed <= 0) {
+      setError("Please enter a valid number of units");
+      setBillAmount(null);
+    } else {
+      setError("");
     const unitRate = 0.5;
-    const total = parseFloat(units) * unitRate;
-    setTheBillAmount(isNaN(total) ? null : total.toFixed(2));
-    setUnites("");
+    const total = unitConsumed * unitRate;
+    setBillAmount(total.toFixed(2));
+    setUnits("");
+    }
+  };
+
+  const resetBill = () => {
+    setBillAmount(null);
+    setUnits("");
+    setError("");
   };
 
   return (
-    <div className="min-h-screen mx-auto flex flex-col items-center justify-center bg-indigo-700 p-4">
-      <div className="bg-white w-full max-w-md rounded-lg shadow-lg p-6 space-y-4">
-        <h1 className="text-2xl font-semibold text-gray-700 text-center">
-          Electricity Billing Calculater
+    <div className="min-h-screen flex items-center justify-center bg-indigo-700 px-4">
+      <div className="bg-white w-full max-w-lg md:max-w-md lg:max-w-xl rounded-lg shadow-lg p-6 space-y-6">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 text-center">
+          Electricity Billing Calculator
         </h1>
-        <input
-          type="number"
-          value={units}
-          onChange={(event) => setUnites(event.target.value)}
-          placeholder="Enter consumed units"
-          className="w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 p-3"
-        />
-        <button
-          className="w-full bg-blue-500 hover:bg-blue-700 transition duration-200 text-white rounded-md py-2"
-          onClick={calculateTheBill}
-        >
-          Calculate the Bill
-        </button>
-        <button className="w-full bg-green-500 hover:bg-green-600 transition duration-200 rounded-md py-2 text-white" onClick={resetTheBill}>
-          Reset the Bill
-        </button>
-        {theBillAmount !== null && (
+
+        <div className="flex flex-col gap-4">
+          <input
+            type="number"
+            value={units}
+            onChange={(event) => setUnits(event.target.value)}
+            placeholder="Enter consumed units"
+            className="w-full h-14 md:h-16 lg:h-18 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 p-3 text-lg lg:placeholder:text-xl md:placeholder:text-lg placeholder:tracking-wider "
+          />
+
+          {error && (
+            <div className="text-md text-red-600 text-center font-medium">
+              {error}
+            </div>
+          )}
+
+          <button
+            className="w-full h-14 md:h-16 lg:h-18 bg-blue-500 hover:bg-blue-700 transition duration-200 text-white rounded-md lg:text-xl md:text-lg text-md font-semibold "
+            onClick={calculateBill}
+          >
+            Calculate Bill
+          </button>
+
+          <button
+            className="w-full h-14 md:h-16 lg:h-18 bg-green-600 hover:bg-green-700 transition duration-200 rounded-md text-white  lg:text-xl md:text-lg text-md font-semibold "
+            onClick={resetBill}
+          >
+            Reset
+          </button>
+        </div>
+
+        {billAmount !== null && (
           <div className="mt-4 text-lg font-medium text-center text-gray-700">
-            Total Amount : <span>{theBillAmount}</span>
+            Total Amount: <span className="font-bold">${billAmount}</span>
           </div>
         )}
       </div>
@@ -43,4 +77,4 @@ const BillingCalculater = () => {
   );
 };
 
-export default BillingCalculater;
+export default BillingCalculator;
