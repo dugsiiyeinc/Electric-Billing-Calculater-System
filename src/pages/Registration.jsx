@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -21,6 +21,9 @@ const Registration = () => {
     password:"",
     confirmPassword:""
   });
+
+  const [users,setUsers] = useState(JSON.parse(localStorage.getItem("users")) ||[]);
+ 
 
   const [errors,setErrors] = useState({});
    
@@ -114,9 +117,22 @@ const Registration = () => {
       })
    
     if(Object.keys(validateErrors).length === 0){
-      alert("success");
-      console.log(registrationData);
-      reset();
+      const oldUsers = JSON.parse(localStorage.getItem("users")) || [];
+      const existUser = oldUsers.find(user => user.username === registrationData.username || 
+        user.email === registrationData.email);
+        if(existUser){
+          alert("user Already exists please use unique email and name");
+          return;
+        }else{
+          alert("success");
+          console.log(registrationData);
+          setUsers([...users,registrationData]);
+          console.log(users);
+          localStorage.setItem("users",JSON.stringify(users));
+          reset();
+        }
+     
+    
     }else{    
       setErrors(validateErrors);
     }
