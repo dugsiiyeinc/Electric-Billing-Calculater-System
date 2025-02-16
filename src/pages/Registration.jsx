@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Registration = () => {
+
+  const [registrationData , setRegistrationData] = useState({
+    username:"",
+    email:"",
+    phone:"",
+    defaultCompany:"",
+    profilePic:"",
+    password:"",
+    confirmPassword:""
+  });
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
