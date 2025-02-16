@@ -21,7 +21,13 @@ const Registration = () => {
     confirmPassword:""
   });
 
- 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => setRegistrationData((prev) => ({...prev, profilePic:reader.result}));
+    reader.readAsDataURL(file);
+  };
   const handleChange = (e) =>{
     const {name,value} = e.target;
 
@@ -93,7 +99,10 @@ const Registration = () => {
           <div className="flex space-y-2">
             <label className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 focus:outline-none p-2 text-center">
               Upload Profile
-              <input type="file" accept="image/*" className="hidden" />
+              <input type="file" 
+              accept="image/*"
+              onChange={handleImageChange}
+               className="hidden" />
             </label>
           </div>
           <div className="flex flex-col space-y-2">
