@@ -246,11 +246,13 @@ const Registration = () => {
 
           <button
             type="submit"
-            className="bg-indigo-600 py-2 px-3 w-full rounded  text-lg font-medium capitalize text-white mt-2 cursor-pointer  hover:bg-indigo-700"
+            className="bg-indigo-600 py-2 px-3 w-full rounded  text-lg font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-indigo-700"
           >
             submit
           </button>
+          <p className="text-center text-gray-700">Al ready have a user! <a className="text-indigo-600 hover:text-indigo-700 cursor-pointer">Sign in </a></p>
         </form>
+       
       </div>
       <Footer />
     </div>
