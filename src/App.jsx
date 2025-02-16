@@ -5,6 +5,7 @@ import Home from "../src/pages/Home";
 import About from "../src/components/About";
 import Navbar from "./components/Navbar";
 import Registration from "./pages/Registration";
+import Login from "./pages/Login";
 const App = () => {
   <Navbar />
   const routes = useRoutes([
@@ -15,10 +16,6 @@ const App = () => {
     {
       path: "/about",
       element: <About />,
-    },
-    {
-      path: "/login",
-      element: <Registration />,
     },
   ]);
 
