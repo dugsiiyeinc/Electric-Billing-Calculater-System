@@ -4,6 +4,13 @@ import Footer from "../components/Footer";
 
 const Registration = () => {
 
+
+  const companies = [
+      "Beco",
+      "Mogadishu power",
+      "Blue Sky"
+  ];
+
   const [registrationData , setRegistrationData] = useState({
     username:"",
     email:"",
@@ -14,17 +21,27 @@ const Registration = () => {
     confirmPassword:""
   });
 
+ 
   const handleChange = (e) =>{
     const {name,value} = e.target;
 
     setRegistrationData((prev) => ({...prev, [name]:value}));
   }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+
+
+    console.log(registrationData);
+    
+  }
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
       <div className="flex justify-center items-center  px-4 py-16">
         <form 
-
+        onSubmit={handleSubmit}
         className="bg-white w-md py-6 px-4 rounded-lg space-y-2">
           <h2 className="text-2xl text-center mb-4 font-bold ">Registration</h2>
           <div className="flex flex-col space-y-2">
@@ -59,15 +76,18 @@ const Registration = () => {
           </div>
           <div className="flex flex-col space-y-2">
             <select
-              name="company"
+              name="defaultCompany"
               value={registrationData.defaultCompany}
               onChange={handleChange}
               className="w-full border border-gray-300 py-1 px-3 rounded"
             >
-              <option value="">Select your company </option>
-              <option value="beco">Beco</option>
-              <option value="mogadishu power"> Mogadishu Power </option>
-              <option value="blue sky"> Blue sky </option>
+              <option value="">Select Deafult company</option>
+              {
+                companies.map((company,index) =>(
+                  <option key={index} value={company}>{company}</option>
+                ))
+              }
+              
             </select>
           </div>
           <div className="flex space-y-2">
