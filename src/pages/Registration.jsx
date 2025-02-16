@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+
 const Registration = () => {
 
 
@@ -21,6 +22,64 @@ const Registration = () => {
     confirmPassword:""
   });
 
+  const [errors,setErrors] = useState({});
+   
+  const validateField = (name,value) =>{
+    let error = ""
+    if(name === "username"){
+      if(!value){
+        error = "username is required!";
+      }
+   }
+
+   if(name === "email"){
+    if(!value){
+      error = "email is required!"
+    }else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){
+      error = "email is not valid!"
+    }
+   }
+
+   if(name === "phone"){
+    if(!value){
+      error = "phone is required!";
+    }
+   }
+   
+   if(name === "defaultCompany"){
+    if(!value){
+      error = "please choose company  is required!";
+    }
+   }
+   if(name === "password"){
+    if(!value){
+      error = "please enter strong password!";
+    }else if(value.length < 8){
+      error = "please must be 8 characters!";
+    }else if(!/[A-Z]/.test(value)){
+      error = "password must at least one uppercase latter"
+    }else if(!/[a-z]/.test(value)){
+      error = "password must at least one lowercase latter"
+    }else if(!/[0-9]/.test(value)){
+      error = "password must at least one number"
+    }else if(!/[!@#$%&*]/.test(value)){
+      error = "password must at least one special character"
+    }else if(value.length > 32){
+      error = "please doesn`t greater than 32 characters!";
+    }
+
+   
+   }
+   if(name === "confirmPassword"){
+    if(value !== registrationData.password){
+      error = "password don`t matched!";
+    }
+   
+   }
+
+    return error;
+  }
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -32,13 +91,39 @@ const Registration = () => {
     const {name,value} = e.target;
 
     setRegistrationData((prev) => ({...prev, [name]:value}));
+
+   
+    const error = validateField(name,value);
+
+    setErrors((prev) => ({...prev, [name]:error}));
   }
+
+
 
   const handleSubmit = (e) =>{
     e.preventDefault();
 
 
     console.log(registrationData);
+
+    const validateErrors = {};
+
+      Object.keys(registrationData).forEach(key =>{
+        const error = validateField(key,registrationData[key]);
+
+        if(error){
+          validateErrors[key] = error;
+        }
+      })
+   
+    if(Object.keys(validateErrors).length === 0){
+      alert("success");
+      setErrors({});
+    }else{
+      console.log(validateErrors);
+      
+      setErrors(validateErrors);
+    }
     
   }
 
@@ -59,6 +144,7 @@ const Registration = () => {
               placeholder="Enter username"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
+             {errors.username && <p className="text-sm text-red-500">{errors.username}</p>}
           </div>
           <div className="flex flex-col space-y-2">
             <input
@@ -69,6 +155,7 @@ const Registration = () => {
               placeholder="Enter Your Email"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
+               {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>
           <div className="flex flex-col space-y-2">
             <input
@@ -79,6 +166,7 @@ const Registration = () => {
               placeholder="Enter Your Phone"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
+              {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
           </div>
           <div className="flex flex-col space-y-2">
             <select
@@ -95,6 +183,7 @@ const Registration = () => {
               }
               
             </select>
+            {errors.defaultCompany && <p className="text-sm text-red-500">{errors.defaultCompany}</p>}
           </div>
           <div className="flex space-y-2">
             <label className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 focus:outline-none p-2 text-center">
@@ -109,21 +198,25 @@ const Registration = () => {
             <input
               type="password"
               name="password"
+              min={8}
+              max={32}
               value={registrationData.password}
               onChange={handleChange}
               placeholder="Enter Your password"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
+              {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
           </div>
           <div className="flex flex-col space-y-2">
             <input
-              type="confirmPassword"
+              type="password"
               name="confirmPassword"
               value={registrationData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirm Your Password"
               className="w-full border border-gray-300 py-1 px-3 rounded"
             />
+            {errors.confirmPassword && <p className="text-sm text-red-500">{errors.confirmPassword}</p>}
           </div>
 
           <button
