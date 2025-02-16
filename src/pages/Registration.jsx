@@ -103,9 +103,6 @@ const Registration = () => {
   const handleSubmit = (e) =>{
     e.preventDefault();
 
-
-    console.log(registrationData);
-
     const validateErrors = {};
 
       Object.keys(registrationData).forEach(key =>{
@@ -118,13 +115,25 @@ const Registration = () => {
    
     if(Object.keys(validateErrors).length === 0){
       alert("success");
-      setErrors({});
-    }else{
-      console.log(validateErrors);
-      
+      console.log(registrationData);
+      reset();
+    }else{    
       setErrors(validateErrors);
     }
     
+  }
+
+  const reset = () =>{
+    setRegistrationData({
+      username:"",
+      email:"",
+      phone:"",
+      defaultCompany:"",
+      profilePic:null,
+      password:"",
+      confirmPassword:""
+    });
+    setErrors({});
   }
 
   return (
