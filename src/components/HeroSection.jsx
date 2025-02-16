@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 const Hero = () => {
   return (
@@ -17,13 +18,13 @@ const Hero = () => {
         {/* CTA Buttons */}
         <section>
           <div className="flex flex-col md:flex-row justify-center gap-4">
-            <a
-              href="#calculator"
+            <Link
+              to="/billing-calculater"
               className="bg-white text-blue-600 px-6 py-3 rounded-lg shadow-lg hover:bg-blue-100 transition-transform duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               aria-label="Calculate your electricity usage"
             >
               Calculate Now
-            </a>
+            </Link>
             <a
               href="#learn-more"
               className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-700 transition-transform duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
