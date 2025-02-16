@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const BillingCalculator = () => {
   const [units, setUnits] = useState("");
   const [billAmount, setBillAmount] = useState(null);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const savedBill = localStorage.getItem("theLastBillAmount");
+    if (savedBill && !isNaN(savedBill)) {
+      setBillAmount(savedBill);
+    }
+  }, []);
+
   const calculateBill = () => {
     if (units === "") {
       setError("Please enter the number of units");
@@ -17,10 +25,12 @@ const BillingCalculator = () => {
       setBillAmount(null);
     } else {
       setError("");
-    const unitRate = 0.5;
-    const total = unitConsumed * unitRate;
-    setBillAmount(total.toFixed(2));
-    setUnits("");
+      const unitRate = 0.5;
+      const total = unitConsumed * unitRate;
+      setBillAmount(total.toFixed(2));
+      setUnits("");
+
+      localStorage.setItem("theLastBillAmount", total.toFixed(2));
     }
   };
 
@@ -28,6 +38,8 @@ const BillingCalculator = () => {
     setBillAmount(null);
     setUnits("");
     setError("");
+
+    localStorage.removeItem("theLastBillAmount");
   };
 
   return (
