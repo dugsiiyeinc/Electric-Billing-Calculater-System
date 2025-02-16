@@ -30,7 +30,9 @@ const BillingCalculater = () => {
         >
           Calculate the Bill
         </button>
-       
+        <button className="w-full bg-green-500 hover:bg-green-600 transition duration-200 rounded-md py-2 text-white" onClick={resetTheBill}>
+          Reset the Bill
+        </button>
         {theBillAmount !== null && (
           <div className="mt-4 text-lg font-medium text-center text-gray-700">
             Total Amount : <span>{theBillAmount}</span>
