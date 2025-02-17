@@ -34,8 +34,8 @@ const BillingForm = () => {
  
 
   return (
-    <div className='flex items-center px-4 space-x-2 mt-4'>
-      <div>
+    <div className='w-full flex items-center lg:justify-center flex-wrap gap-2 mt-4'>
+     
         <select 
         value={selectedCompany.id}
         onChange={handleChange}
@@ -47,25 +47,21 @@ const BillingForm = () => {
           ))
         }
         </select>
-      </div>
-      <div>
         <input type="Number" placeholder='Enter bill'
         className="field-sizing-content  border border-gray-300 py-1 px-3 rounded"
          />
-      </div>
-      <div>
         <input type="Number" placeholder='rate'
         value={selectedCompany.rate}
         readOnly
         className="field-sizing-content border bg-gray-200 border-gray-300 py-1 px-3 rounded"
          />
-      </div>
-      <div>
+
         <input type="Number" placeholder='Enter Month'
         className="field-sizing-content  border border-gray-300 py-1 px-3 rounded"
          />
+  
       </div>
-    </div>
+     
   )
 }
 
