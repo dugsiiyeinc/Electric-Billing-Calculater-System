@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const companies = [
   {
@@ -7,12 +7,12 @@ const companies = [
    rate:0.42
   },
   {
-    id:1,
+    id:2,
     name: "Mogadishu power",
     rate:0.46
    },
    {
-    id:1,
+    id:3,
     name: "Blue Sky",
     rate:0.50
    },
@@ -20,27 +20,49 @@ const companies = [
 ];
 const BillingForm = () => {
 
+  const [selectedCompany, setSelectedCompany] = useState(companies[0]);
+
+  const handleChange = (e) =>{
+      const optionId = Number(e.target.value);
+      const selectedOption = companies.find(company => company.id === optionId );
+      console.log(selectedOption);
+      
+    setSelectedCompany(selectedOption);
+ 
+  }
+
+ 
+
   return (
     <div className='flex items-center px-4 space-x-2 mt-4'>
       <div>
         <select 
-        className="w-44 border border-gray-300 py-1 px-3 rounded"
+        value={selectedCompany.id}
+        onChange={handleChange}
+        className=" field-sizing-content border border-gray-300 py-1 px-3 rounded"
         >
         {
           companies.map(company =>(
-            <option key={company.id} value={company.name}>{company.name}</option>
+            <option key={company.id} value={company.id}>{company.name}</option>
           ))
         }
         </select>
       </div>
       <div>
         <input type="Number" placeholder='Enter bill'
-        className="w-28 border border-gray-300 py-1 px-3 rounded"
+        className="field-sizing-content  border border-gray-300 py-1 px-3 rounded"
          />
       </div>
       <div>
         <input type="Number" placeholder='rate'
-        className="w-28 border border-gray-300 py-1 px-3 rounded"
+        value={selectedCompany.rate}
+        readOnly
+        className="field-sizing-content border bg-gray-200 border-gray-300 py-1 px-3 rounded"
+         />
+      </div>
+      <div>
+        <input type="Number" placeholder='Enter Month'
+        className="field-sizing-content  border border-gray-300 py-1 px-3 rounded"
          />
       </div>
     </div>
