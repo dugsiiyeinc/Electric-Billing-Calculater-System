@@ -2,6 +2,7 @@ import React from 'react'
 import BillingForm from './BillingForm'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
+import BillingList from './BillingList';
     const data = [
       { id: 1, name: "name1", bill: 25, rate: 0.39, lastMonth: 10.22, currentMonth: 11, profit: +1.95 },
       { id: 2, name: "name2", bill: 28, rate: 0.45, lastMonth: 12.50, currentMonth: 9.80, profit: -1.20 },
@@ -14,7 +15,7 @@ import Footer from '../Footer'
       { id: 9, name: "name9", bill: 21, rate: 0.37, lastMonth: 9.10, currentMonth: 13, profit: +2.80 },
       { id: 10, name: "name10", bill: 30, rate: 0.50, lastMonth: 13.00, currentMonth: 9.60, profit: -2.00 },
     ];
-    
+
 const BillingApp = () => {
   return (
     <div className='bg-gray-100'>
@@ -26,7 +27,7 @@ const BillingApp = () => {
             className='w-[90%] lg:w-full border border-gray-400 py-2 px-3 rounded' />
         </div>
       <BillingForm />
-    
+     <BillingList data={data} />
       </div>
     
       <Footer />
