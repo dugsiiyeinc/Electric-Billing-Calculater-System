@@ -39,7 +39,7 @@ const BillingForm = () => {
         <select 
         value={selectedCompany.id}
         onChange={handleChange}
-        className=" field-sizing-content border border-gray-300 py-1 px-3 rounded"
+        className=" field-sizing-content border border-gray-300 py-1 px-2 rounded"
         >
         {
           companies.map(company =>(
@@ -48,16 +48,16 @@ const BillingForm = () => {
         }
         </select>
         <input type="Number" placeholder='Enter bill'
-        className="field-sizing-content  border border-gray-300 py-1 px-3 rounded"
+        className="field-sizing-content  border border-gray-300 py-1 px-2 rounded"
          />
         <input type="Number" placeholder='rate'
         value={selectedCompany.rate}
         readOnly
-        className="field-sizing-content border bg-gray-200 border-gray-300 py-1 px-3 rounded"
+        className="field-sizing-content border bg-gray-200 border-gray-300 py-1 px-2 rounded"
          />
 
         <input type="Number" placeholder='Enter Month'
-        className="field-sizing-content  border border-gray-300 py-1 px-3 rounded"
+        className="field-sizing-content  border border-gray-300 py-1 px-2 rounded"
          />
   
       </div>
