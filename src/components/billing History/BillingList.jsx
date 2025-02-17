@@ -1,4 +1,5 @@
 import React from 'react'
+import BillingItem from './BillingItem'
 
 const BillingList = ({data}) => {
   return (
@@ -16,7 +17,11 @@ const BillingList = ({data}) => {
                   <th className="border border-gray-300 text-sm  font-semibold p-2">profit</th>
                 </tr>
               </thead>
-              
+              <tbody>
+                {data.map((row) => (
+                  <BillingItem key={row.id}  row={row}/>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>
