@@ -20,11 +20,11 @@ const BillingApp = () => {
   return (
     <div className='bg-gray-100'>
       <Navbar />
-      <div className='py-10 w-full mx-4 lg:max-w-5xl lg:mx-auto'>
+      <div className='py-10 max-w-5xl mx-auto px-2 items-center justify-center'>
         <div className='w-full mb-4'>
             <h1 className='text-2xl font-bold mb-4'>Billing History</h1>
             <input type="text" placeholder='Search Billing'
-            className='w-[90%] lg:w-full border border-gray-400 py-2 px-3 rounded' />
+            className='w-full border border-gray-400 py-2 px-3 rounded' />
         </div>
       <BillingForm />
      <BillingList data={data} />
