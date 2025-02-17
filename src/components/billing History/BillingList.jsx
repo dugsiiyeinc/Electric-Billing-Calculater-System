@@ -24,6 +24,10 @@ const BillingList = ({data}) => {
               </tbody>
             </table>
           </div>
+          <div className='flex justify-between items-center mt-4'>
+          <button className="bg-indigo-600 py-2 px-3  rounded  text-sm font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-indigo-700">Previous</button>
+          <button  className="bg-indigo-600 py-2 px-3  rounded  text-sm font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-indigo-700">Next</button>
+          </div>
         </div>
   )
 }
