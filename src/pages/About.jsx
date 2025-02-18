@@ -5,7 +5,7 @@ import KeyFeatures from "../components/KeyFeatures";
 import Benefits from "../components/Benefits";
 import TeamMembers from "../components/TeamMembers";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 const About = () => {
   return (
@@ -58,13 +58,13 @@ const About = () => {
               Join thousands of users who are already benefiting from our
               Electric Billing system.
             </p>
-            <Link
+            <NavLink
             to="/register"
               href="#"
               className="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Get Started
-            </Link>
+            </NavLink>
           </div>
           <TeamMembers />
         </div>

@@ -68,7 +68,7 @@ const BillingCalculator = () => {
             )}
 
             <button
-              className="w-full h-14 md:h-16 lg:h-18 bg-blue-500 hover:bg-blue-700 transition duration-200 text-white rounded-md lg:text-xl md:text-lg text-md font-semibold "
+              className="w-full h-14 md:h-16 lg:h-18 bg-indigo-600 hover:bg-indigo-700 transition duration-200 text-white rounded-md lg:text-xl md:text-lg text-md font-semibold "
               onClick={calculateBill}
             >
               Calculate Bill
