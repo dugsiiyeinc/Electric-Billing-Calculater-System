@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { X, Menu } from "lucide-react";
-import { Link as ScrollLink } from "react-scroll";
-import { Link as RouterLink, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -14,67 +13,56 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md" id="home">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <RouterLink to="/" className="text-xl font-semibold text-gray-800">
+        <NavLink to="/" className="text-xl font-semibold text-gray-800">
           Electric Billing
-        </RouterLink>
+        </NavLink>
 
         {/* Desktop Navigation Links */}
         <ul className="hidden lg:flex space-x-8 text-gray-600 text-lg font-normal cursor-pointer">
           <li>
-            <RouterLink
+            <NavLink
               to="/"
-              className="hover:text-blue-500 transition"
+              className="hover:text-indigo-500 transition"
             >
               Home
-            </RouterLink>
+            </NavLink>
+          </li>
+        
+          <li>
+            <NavLink
+              to="/billingCalculator"
+
+              className="hover:text-indigo-500 transition"
+            >
+              Exchange
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/savedData"
+              className="hover:text-indigo-500 transition"
+            >
+              Saved data
+            </NavLink>
           </li>
           <li>
             <NavLink
               to="/about"
-              className="hover:text-blue-500 transition"
+              className="hover:text-indigo-500 transition"
             >
               About
             </NavLink>
           </li>
-          <li>
-            <RouterLink
-              to="/savedData"
-              smooth={true}
-              duration={500}
-              className="hover:text-blue-500 transition"
-            >
-              Saved data
-            </RouterLink>
-          </li>
-          <li>
-            <ScrollLink
-              to="testimonials"
-              smooth={true}
-              duration={500}
-              className="hover:text-blue-500 transition"
-            >
-              Testimonials
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              to="footer"
-              smooth={true}
-              duration={500}
-              className="hover:text-blue-500 transition"
-            >
-              Footer
-            </ScrollLink>
-          </li>
+         
         </ul>
 
         {/* Login Button (Desktop) */}
-        <RouterLink
+        <NavLink
           to="/login"
-          className="hidden lg:block bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+          className="hidden lg:block bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700  transition-colors duration-200"
         >
           Log In
-        </RouterLink>
+        </NavLink>
 
         {/* Mobile Menu Button */}
         <button
@@ -89,65 +77,48 @@ const Navbar = () => {
       {mobileDrawerOpen && (
         <div className="lg:hidden bg-white shadow-md py-4 absolute w-full left-0 top-full">
           <ul className="flex flex-col space-y-4 text-center text-gray-600 text-lg">
-            <li>
-              <RouterLink
-                to="/"
-                className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
-                Home
-              </RouterLink>
-            </li>
+          <li>
+            <NavLink
+              to="/"
+              className="hover:text-indigo-500 transition"
+            >
+              Home
+            </NavLink>
+          </li>
+        
+          <li>
+            <NavLink
+              to="/billingCalculator"
+
+              className="hover:text-indigo-500 transition"
+            >
+              Exchange
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/savedData"
+              className="hover:text-indigo-500 transition"
+            >
+              Saved data
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className="hover:text-indigo-500 transition"
+            >
+              About
+            </NavLink>
+          </li>
             <li>
               <NavLink
-                to="/about"
-                className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
-              <ScrollLink
-                to="features"
-                smooth={true}
-                duration={500}
-                className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
-                Features
-              </ScrollLink>
-            </li>
-            <li>
-              <ScrollLink
-                to="testimonials"
-                smooth={true}
-                duration={500}
-                className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
-                Testimonials
-              </ScrollLink>
-            </li>
-            <li>
-              <ScrollLink
-                to="footer"
-                smooth={true}
-                duration={500}
-                className="block py-2 hover:text-blue-500 transition"
-                onClick={toggleDrawerBtn}
-              >
-                Footer
-              </ScrollLink>
-            </li>
-            <li>
-              <RouterLink
                 to="/login"
-                className="block bg-blue-500 text-white mx-6 px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+                className="block bg-indigo-600 text-white mx-6 px-4 py-2 rounded-lg shadow hover:bg-indigo-700 transition"
                 onClick={toggleDrawerBtn}
               >
                 Log In
-              </RouterLink>
+              </NavLink>
             </li>
           </ul>
         </div>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import CustomToaster from "./CustomeToaster";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const BillingCalculator = () => {
   const [units, setUnits] = useState("");
@@ -42,8 +44,9 @@ const BillingCalculator = () => {
 
   return (
     <div>
+      <Navbar />
       <CustomToaster /> 
-      <div className="min-h-screen flex items-center justify-center bg-indigo-700 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
         <div className="bg-white w-full max-w-lg md:max-w-md lg:max-w-xl rounded-lg shadow-lg p-6 space-y-6">
           <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 text-center">
             Electricity Billing Calculator
@@ -65,7 +68,7 @@ const BillingCalculator = () => {
             )}
 
             <button
-              className="w-full h-14 md:h-16 lg:h-18 bg-blue-500 hover:bg-blue-700 transition duration-200 text-white rounded-md lg:text-xl md:text-lg text-md font-semibold "
+              className="w-full h-14 md:h-16 lg:h-18 bg-indigo-600 hover:bg-indigo-700 transition duration-200 text-white rounded-md lg:text-xl md:text-lg text-md font-semibold "
               onClick={calculateBill}
             >
               Calculate Bill
@@ -86,6 +89,7 @@ const BillingCalculator = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
