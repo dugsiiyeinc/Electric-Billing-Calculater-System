@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -10,12 +10,13 @@ const Login = () => {
         username:"",
         password:""
     });
-    
     const handleChange = (e) =>{
         const {name,value} = e.target;
 
         setUser((prev) => ({...prev, [name]:value}));
     }
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -29,7 +30,8 @@ const Login = () => {
 
         if(existUser){
             localStorage.setItem("onlineUser",JSON.stringify(existUser));
-
+            toast.success("user login successfully");
+            navigate("/billingCalculator")
         }else{
         
             toast.error("invalid credentials!")

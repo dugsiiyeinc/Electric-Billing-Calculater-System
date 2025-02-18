@@ -37,35 +37,23 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <RouterLink
+            <NavLink
+              to="/billingCalculator"
+
+              className="hover:text-blue-500 transition"
+            >
+              Exchange
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/savedData"
-              smooth={true}
-              duration={500}
               className="hover:text-blue-500 transition"
             >
               Saved data
-            </RouterLink>
+            </NavLink>
           </li>
-          <li>
-            <ScrollLink
-              to="testimonials"
-              smooth={true}
-              duration={500}
-              className="hover:text-blue-500 transition"
-            >
-              Testimonials
-            </ScrollLink>
-          </li>
-          <li>
-            <ScrollLink
-              to="footer"
-              smooth={true}
-              duration={500}
-              className="hover:text-blue-500 transition"
-            >
-              Footer
-            </ScrollLink>
-          </li>
+         
         </ul>
 
         {/* Login Button (Desktop) */}
