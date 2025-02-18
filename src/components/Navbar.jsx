@@ -37,14 +37,14 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <ScrollLink
-              to="features"
+            <RouterLink
+              to="/savedData"
               smooth={true}
               duration={500}
               className="hover:text-blue-500 transition"
             >
-              Features
-            </ScrollLink>
+              Saved data
+            </RouterLink>
           </li>
           <li>
             <ScrollLink
