@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { profileContext } from "./ProfileContext";
 
 import { initialState } from "./initialState";
-import { profileReducers } from "../reducers/ProfileReducer";
+import { profileReducers } from "../../components/reducers/ProfileReducer";
 
 
 export const useProfile = () => useContext(profileContext);
