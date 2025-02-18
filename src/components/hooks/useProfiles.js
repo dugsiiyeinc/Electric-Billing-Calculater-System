@@ -1,4 +1,4 @@
-import { useProfile } from "../profile Management/ProfileContext";
+import { useProfile } from "../contexts/ProfileContext";
 
 export const useProfiles = () => {
   const { state, dispatch } = useProfile();

@@ -2,4 +2,4 @@ import { createContext } from "react";
 
 import React from "react";
 
-export const profileContext = createContext();
+export const ProfileContext = createContext();
