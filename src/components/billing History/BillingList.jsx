@@ -41,6 +41,9 @@ const BillingList = ({ data }) => {
             {data.map((row) => (
               <BillingItem key={row.id} row={row} />
             ))}
+              {
+              data.length === 0 && <p className="p-4 text-gray-700">No available data History.</p>
+            }
           </tbody>
         </table>
       </div>
