@@ -18,7 +18,7 @@ const companies = [
    },
   
 ];
-const BillingForm = () => {
+const BillingForm = ({setSelectedCategory}) => {
 
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
 
@@ -26,7 +26,7 @@ const BillingForm = () => {
       const optionId = Number(e.target.value);
       const selectedOption = companies.find(company => company.id === optionId );
       console.log(selectedOption);
-      
+      setSelectedCategory(selectedOption.name)
     setSelectedCompany(selectedOption);
  
   }

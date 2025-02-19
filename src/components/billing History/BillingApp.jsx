@@ -20,7 +20,28 @@ const BillingApp = () => {
     const inputRef = useRef(null);
     const [query,setQuery] = useState("");
     const [debounceQuery, setDebounceQuery] = useState("");
-    const [billingHistory, setBillingHistory] = useState(data);
+    const [originalData, setOriginalData] = useState(data);
+    const [filteredBillingHistory, setFilteredBillingHistory] = useState([]);
+    const [selectedCategory,setSelectedCategory] = useState("");
+
+    useEffect(() => {
+      if(selectedCategory){
+        const filteredData = () =>{
+          try {
+            const filteredHistory = originalData.filter(history => history.name.toLocaleLowerCase() === selectedCategory.toLocaleLowerCase());
+          console.log(filteredHistory);
+          setFilteredBillingHistory(filteredHistory)
+          } catch (error) {
+              console.error(error);
+          }
+          
+          
+        }
+        filteredData();
+      }else{
+        setFilteredBillingHistory(originalData);
+      }
+    },[selectedCategory,originalData])
 
     useEffect(()=> {
       const timerId = setTimeout(() =>{
@@ -34,8 +55,8 @@ const BillingApp = () => {
       if(debounceQuery){
         const searchData = () =>{
           try {
-            const searchHistory = billingHistory.filter(history => history.name.toLocaleLowerCase().includes(debounceQuery.toLocaleLowerCase()));
-            setBillingHistory(searchHistory); 
+            const searchHistory = originalData.filter(history => history.name.toLocaleLowerCase().includes(debounceQuery.toLocaleLowerCase()));
+            setFilteredBillingHistory(searchHistory); 
             console.log(searchHistory);
             
           } catch (error) {
@@ -45,7 +66,7 @@ const BillingApp = () => {
         }
         searchData();
       }else{
-        setBillingHistory(data);
+        setFilteredBillingHistory(originalData);
       }
     
     },[debounceQuery])
@@ -55,7 +76,7 @@ const BillingApp = () => {
         inputRef.current.focus();
       }
      
-    },[billingHistory])
+    },[filteredBillingHistory])
 
   return (
     <div className='bg-gray-100'>
@@ -71,8 +92,8 @@ const BillingApp = () => {
             ref={inputRef}
             className='w-full border border-gray-400 py-2 px-3 rounded focus:outline-indigo-500' />
         </div>
-      <BillingForm />
-     <BillingList data={billingHistory} />
+      <BillingForm setSelectedCategory={setSelectedCategory} />
+     <BillingList data={filteredBillingHistory} />
       </div>
     
       <Footer />

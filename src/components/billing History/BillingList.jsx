@@ -42,7 +42,7 @@ const BillingList = ({ data }) => {
               <BillingItem key={row.id} row={row} />
             ))}
               {
-              data.length === 0 && <p className="p-4 text-gray-700">No available data History.</p>
+              data.length === 0 && <tr><td className="p-4 text-gray-700">No available data History.</td></tr>
             }
           </tbody>
         </table>
