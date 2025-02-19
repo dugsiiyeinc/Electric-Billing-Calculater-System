@@ -25,7 +25,7 @@ const BillingApp = () => {
     useEffect(()=> {
       const timerId = setTimeout(() =>{
         setDebounceQuery(query);
-      },1000)
+      },300)
 
       return () => clearTimeout(timerId);
     },[query]);
