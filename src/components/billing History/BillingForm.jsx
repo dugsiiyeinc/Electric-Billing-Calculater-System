@@ -18,27 +18,44 @@ const companies = [
    },
   
 ];
-const BillingForm = () => {
+const BillingForm = ({setSelectedCategory}) => {
 
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
+  const [bill,setBill] = useState("");
+  const [month,setMonth] = useState("");
 
-  const handleChange = (e) =>{
+  const handleSelectedCompanyChange = (e) =>{
       const optionId = Number(e.target.value);
       const selectedOption = companies.find(company => company.id === optionId );
       console.log(selectedOption);
-      
+      setSelectedCategory(selectedOption.name.toLocaleLowerCase())
     setSelectedCompany(selectedOption);
  
   }
 
- 
+ const handleChange = (e) =>{
+  const {name,value} = e.target;
+  console.log(name);
+  
+  if(name === "bill"){
+    const billing = Number(value);
+    setBill(billing);
+  setSelectedCategory(billing);
+  }
+  if(name === "month"){
+    const currentMonth = parseFloat(value);    
+    setMonth(currentMonth);
+    setSelectedCategory(currentMonth);
+  }
+  
+ }
 
   return (
     <div className='w-full flex items-center lg:justify-center flex-wrap gap-2 mt-4'>
      
         <select 
         value={selectedCompany.id}
-        onChange={handleChange}
+        onChange={handleSelectedCompanyChange}
         className=" field-sizing-content border border-gray-300 py-1 px-2 rounded"
         >
         {
@@ -47,7 +64,9 @@ const BillingForm = () => {
           ))
         }
         </select>
-        <input type="Number" placeholder='Enter bill'
+        <input type="Number" name="bill" placeholder='Enter bill'
+        value={bill}
+        onChange={handleChange}
         className="field-sizing-content  border border-gray-300 py-1 px-2 rounded"
          />
         <input type="Number" placeholder='rate'
@@ -56,7 +75,7 @@ const BillingForm = () => {
         className="field-sizing-content border bg-gray-200 border-gray-300 py-1 px-2 rounded"
          />
 
-        <input type="Number" placeholder='Enter Month'
+        <input type="Number" name='month' value={month} onChange={handleChange} placeholder='Enter Month'
         className="field-sizing-content  border border-gray-300 py-1 px-2 rounded"
          />
   
