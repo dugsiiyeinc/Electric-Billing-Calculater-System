@@ -3,17 +3,26 @@ import { toast } from "react-hot-toast";
 import CustomToaster from "./CustomeToaster";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
+
+const companyRates = {
+  Beco: 0.42,
+  SomPower: 0.5,
+  NEC: 0.45,
+};
 
 const BillingCalculator = () => {
+  const [company, setCompany] = useState("Beco");
   const [units, setUnits] = useState("");
   const [billAmount, setBillAmount] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const calculateBill = () => {
     if (units === "") {
       setError("Please enter the number of units");
       setBillAmount(null);
-      toast.error("Please enter the number of units"); 
+      toast.error("Please enter the number of units");
       return;
     }
 
@@ -21,16 +30,17 @@ const BillingCalculator = () => {
     if (isNaN(unitConsumed) || unitConsumed <= 0) {
       setError("Please enter a valid number of units");
       setBillAmount(null);
-      toast.error("Please enter a valid number! "); 
+      toast.error("Please enter a valid number!");
     } else {
       setError("");
-      const unitRate = 0.5;
-      const total = unitConsumed * unitRate;
+      const total = unitConsumed * companyRates[company];
       setBillAmount(total.toFixed(2));
       setUnits("");
 
       localStorage.setItem("theLastBillAmount", total.toFixed(2));
-      toast.success("Bill calculated successfully!"); // Show success toast
+      localStorage.setItem("lastCompany", company);
+      localStorage.setItem("lastUnits", units);
+      toast.success("Bill calculated successfully!");
     }
   };
 
@@ -39,13 +49,19 @@ const BillingCalculator = () => {
     setUnits("");
     setError("");
     localStorage.removeItem("theLastBillAmount");
-    toast.info("Bill reset successfully!"); 
+    localStorage.removeItem("lastCompany");
+    localStorage.removeItem("lastUnits");
+    toast.info("Bill reset successfully!");
+  };
+
+  const saveBill = () => {
+    navigate("/saved-bills");
   };
 
   return (
     <div>
       <Navbar />
-      <CustomToaster /> 
+      <CustomToaster />
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
         <div className="bg-white w-full max-w-lg md:max-w-md lg:max-w-xl rounded-lg shadow-lg p-6 space-y-6">
           <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 text-center">
@@ -53,12 +69,31 @@ const BillingCalculator = () => {
           </h1>
 
           <div className="flex flex-col gap-4">
+            <select
+              value={company}
+              onChange={(event) => setCompany(event.target.value)}
+              className="w-full h-14 border border-gray-300 rounded-md p-3 text-lg"
+            >
+              {Object.keys(companyRates).map((comp) => (
+                <option key={comp} value={comp}>
+                  {comp}
+                </option>
+              ))}
+            </select>
+
+            <div className="text-lg font-medium text-center">
+              Electric Rate:{" "}
+              <span className="font-bold">
+                {companyRates[company]} per unit
+              </span>
+            </div>
+
             <input
               type="number"
               value={units}
               onChange={(event) => setUnits(event.target.value)}
               placeholder="Enter consumed units"
-              className="w-full h-14 md:h-16 lg:h-18 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 p-3 text-lg lg:placeholder:text-xl md:placeholder:text-lg placeholder:tracking-wider "
+              className="w-full h-14 border border-gray-300 rounded-md p-3 text-lg"
             />
 
             {error && (
@@ -68,17 +103,24 @@ const BillingCalculator = () => {
             )}
 
             <button
-              className="w-full h-14 md:h-16 lg:h-18 bg-indigo-600 hover:bg-indigo-700 transition duration-200 text-white rounded-md lg:text-xl md:text-lg text-md font-semibold "
+              className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 transition duration-200 text-white rounded-md text-lg font-semibold"
               onClick={calculateBill}
             >
               Calculate Bill
             </button>
 
             <button
-              className="w-full h-14 md:h-16 lg:h-18 bg-green-600 hover:bg-green-700 transition duration-200 rounded-md text-white  lg:text-xl md:text-lg text-md font-semibold "
+              className="w-full h-14 bg-green-600 hover:bg-green-700 transition duration-200 text-white rounded-md text-lg font-semibold"
               onClick={resetBill}
             >
               Reset
+            </button>
+
+            <button
+              className="w-full h-14 bg-blue-600 hover:bg-blue-700 transition duration-200 text-white rounded-md text-lg font-semibold"
+              onClick={saveBill}
+            >
+              Save
             </button>
           </div>
 
