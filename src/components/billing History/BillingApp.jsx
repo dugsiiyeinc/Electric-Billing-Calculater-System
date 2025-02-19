@@ -34,7 +34,7 @@ const BillingApp = () => {
       if(debounceQuery){
         const searchData = () =>{
           try {
-            const searchHistory = billingHistory.filter(history => history.name.includes(debounceQuery) );
+            const searchHistory = billingHistory.filter(history => history.name.toLocaleLowerCase().includes(debounceQuery.toLocaleLowerCase()));
             setBillingHistory(searchHistory); 
             console.log(searchHistory);
             
