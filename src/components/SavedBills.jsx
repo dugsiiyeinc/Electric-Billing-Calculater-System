@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { FaPrint } from "react-icons/fa";
 
 const SavedBills = () => {
   const savedBills = JSON.parse(localStorage.getItem("savedBills")) || [];
+  const [searchTerm, setSearchTerm] = useState("");
 
   const clearSavedBills = () => {
     localStorage.removeItem("savedBills");
-    window.location.reload(); 
+    window.location.reload();
   };
+
+  const filteredBills = savedBills.filter((bill) =>
+    bill.company.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
@@ -20,6 +25,17 @@ const SavedBills = () => {
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-xl font-semibold text-gray-800 text-center mb-6">
             Saved Bills
           </h1>
+
+          {/* Search Box */}
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Search by company name..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
 
           {/* Print Button and Clear Data Button */}
           <div className="mb-6 flex justify-between items-center">
@@ -49,7 +65,7 @@ const SavedBills = () => {
                 </tr>
               </thead>
               <tbody>
-                {savedBills.map((bill, index) => (
+                {filteredBills.map((bill, index) => (
                   <tr key={index} className="border-t border-b border-gray-200">
                     <td className="py-4 px-4 text-gray-600">{bill.company}</td>
                     <td className="py-4 px-4 text-gray-600">{bill.rate}</td>
