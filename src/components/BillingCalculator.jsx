@@ -11,10 +11,20 @@ const companyRates = {
   NEC: 0.45,
 };
 
+const companyCostRates = {
+  Beco: 0.35,
+  SomPower: 0.40,
+  NEC: 0.38,
+};
+
+const myCostRate = 0.30; // Your cost rate per unit
+
 const BillingCalculator = () => {
   const [company, setCompany] = useState("Beco");
   const [units, setUnits] = useState("");
   const [billAmount, setBillAmount] = useState(null);
+  const [companyProfitLoss, setCompanyProfitLoss] = useState(null);
+  const [myProfitLoss, setMyProfitLoss] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -35,98 +45,168 @@ const BillingCalculator = () => {
       setError("");
       const total = unitConsumed * companyRates[company];
       setBillAmount(total.toFixed(2));
-      setUnits("");
 
-      localStorage.setItem("theLastBillAmount", total.toFixed(2));
-      localStorage.setItem("lastCompany", company);
-      localStorage.setItem("lastUnits", units);
-      toast.success("Bill calculated successfully!");
+      // Calculate company profit/loss
+      const companyCost = unitConsumed * companyCostRates[company];
+      const companyProfitLoss = (total - companyCost).toFixed(2);
+      setCompanyProfitLoss(companyProfitLoss);
+
+      // Calculate my profit/loss
+      const myCost = unitConsumed * myCostRate;
+      const myProfitLoss = (total - myCost).toFixed(2);
+      setMyProfitLoss(myProfitLoss);
+
+      // Save the bill to local storage
+      const bill = {
+        company,
+        rate: companyRates[company],
+        units: unitConsumed,
+        billAmount: total.toFixed(2),
+        companyProfitLoss,
+        myProfitLoss,
+        lastBillAmount: getLastBillAmount(),
+        profitOrLoss: calculateProfitOrLoss(total.toFixed(2)),
+      };
+
+      saveBillToLocalStorage(bill);
+      setUnits("");
+      toast.success("Bill calculated and saved successfully!");
     }
+  };
+
+  const getLastBillAmount = () => {
+    const savedBills = JSON.parse(localStorage.getItem("savedBills")) || [];
+    return savedBills.length > 0 ? savedBills[savedBills.length - 1].billAmount : 0;
+  };
+
+  const calculateProfitOrLoss = (currentBill) => {
+    const lastBill = getLastBillAmount();
+    const difference = (currentBill - lastBill).toFixed(2);
+    return difference >= 0 ? `+${difference}` : `${difference}`;
+  };
+
+  const saveBillToLocalStorage = (bill) => {
+    const savedBills = JSON.parse(localStorage.getItem("savedBills")) || [];
+    savedBills.push(bill);
+    localStorage.setItem("savedBills", JSON.stringify(savedBills));
   };
 
   const resetBill = () => {
     setBillAmount(null);
+    setCompanyProfitLoss(null);
+    setMyProfitLoss(null);
     setUnits("");
     setError("");
-    localStorage.removeItem("theLastBillAmount");
-    localStorage.removeItem("lastCompany");
-    localStorage.removeItem("lastUnits");
     toast.info("Bill reset successfully!");
   };
 
   const saveBill = () => {
-    navigate("/saved-bills");
+    navigate("/savedData"); // Navigate to the SavedBills page
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-r from-gray-200 to-gray-300">
       <Navbar />
       <CustomToaster />
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-        <div className="bg-white w-full max-w-lg md:max-w-md lg:max-w-xl rounded-lg shadow-lg p-6 space-y-6">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 text-center">
+      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-8">
+          <h1 className="text-3xl font-bold text-center text-gray-800">
             Electricity Billing Calculator
           </h1>
 
-          <div className="flex flex-col gap-4">
-            <select
-              value={company}
-              onChange={(event) => setCompany(event.target.value)}
-              className="w-full h-14 border border-gray-300 rounded-md p-3 text-lg"
-            >
-              {Object.keys(companyRates).map((comp) => (
-                <option key={comp} value={comp}>
-                  {comp}
-                </option>
-              ))}
-            </select>
+          <div className="space-y-6">
+            <div>
+              <label htmlFor="company" className="block text-lg font-medium text-gray-700">
+                Select Company
+              </label>
+              <select
+                id="company"
+                value={company}
+                onChange={(event) => setCompany(event.target.value)}
+                className="w-full h-12 border border-gray-300 rounded-md px-4 text-lg"
+              >
+                {Object.keys(companyRates).map((comp) => (
+                  <option key={comp} value={comp}>
+                    {comp}
+                  </option>
+                ))}
+              </select>
+            </div>
 
             <div className="text-lg font-medium text-center">
               Electric Rate:{" "}
-              <span className="font-bold">
+              <span className="font-bold text-indigo-600">
                 {companyRates[company]} per unit
               </span>
             </div>
 
-            <input
-              type="number"
-              value={units}
-              onChange={(event) => setUnits(event.target.value)}
-              placeholder="Enter consumed units"
-              className="w-full h-14 border border-gray-300 rounded-md p-3 text-lg"
-            />
+            <div>
+              <label htmlFor="units" className="block text-lg font-medium text-gray-700">
+                Enter Consumed Units
+              </label>
+              <input
+                id="units"
+                type="number"
+                value={units}
+                onChange={(event) => setUnits(event.target.value)}
+                placeholder="Enter consumed units"
+                className="w-full h-12 border border-gray-300 rounded-md px-4 text-lg"
+              />
+              {error && (
+                <div className="text-red-600 text-center text-sm font-medium mt-1">
+                  {error}
+                </div>
+              )}
+            </div>
 
-            {error && (
-              <div className="text-md text-red-600 text-center font-medium">
-                {error}
-              </div>
-            )}
+            <div className="space-y-4">
+              <button
+                className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-lg rounded-md transition duration-200"
+                onClick={calculateBill}
+              >
+                Calculate Bill
+              </button>
 
-            <button
-              className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 transition duration-200 text-white rounded-md text-lg font-semibold"
-              onClick={calculateBill}
-            >
-              Calculate Bill
-            </button>
+              <button
+                className="w-full h-14 bg-gray-500 hover:bg-gray-600 text-white font-semibold text-lg rounded-md transition duration-200"
+                onClick={resetBill}
+              >
+                Reset
+              </button>
 
-            <button
-              className="w-full h-14 bg-green-600 hover:bg-green-700 transition duration-200 text-white rounded-md text-lg font-semibold"
-              onClick={resetBill}
-            >
-              Reset
-            </button>
-
-            <button
-              className="w-full h-14 bg-blue-600 hover:bg-blue-700 transition duration-200 text-white rounded-md text-lg font-semibold"
-              onClick={saveBill}
-            >
-              Save
-            </button>
+              <button
+                className="w-full h-14 bg-green-600 hover:bg-green-700 text-white font-semibold text-lg rounded-md transition duration-200"
+                onClick={saveBill} // Calls saveBill to navigate
+              >
+                Save Bill
+              </button>
+            </div>
           </div>
 
           {billAmount !== null && (
-            <div className="mt-4 text-lg font-medium text-center text-gray-700">
-              Total Amount: <span className="font-bold">${billAmount}</span>
+            <div className="mt-8 text-lg text-gray-700">
+              <div className="flex justify-between">
+                <span>Total Amount:</span>
+                <span className="font-bold text-indigo-700">${billAmount}</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span>Company Profit/Loss:</span>
+                <span
+                  className={`font-bold ${companyProfitLoss >= 0 ? "text-green-500" : "text-red-500"}`}
+                >
+                  {companyProfitLoss >= 0 ? `+${companyProfitLoss}` : companyProfitLoss}
+                </span>
+              </div>
+
+              <div className="flex justify-between">
+                <span>My Profit/Loss:</span>
+                <span
+                  className={`font-bold ${myProfitLoss >= 0 ? "text-green-500" : "text-red-500"}`}
+                >
+                  {myProfitLoss >= 0 ? `+${myProfitLoss}` : myProfitLoss}
+                </span>
+              </div>
             </div>
           )}
         </div>
