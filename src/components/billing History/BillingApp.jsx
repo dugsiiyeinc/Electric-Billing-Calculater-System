@@ -28,7 +28,8 @@ const BillingApp = () => {
       if(selectedCategory){
         const filteredData = () =>{
           try {
-            const filteredHistory = originalData.filter(history => history.name.toLocaleLowerCase() === selectedCategory.toLocaleLowerCase());
+            const filteredHistory = originalData.filter(({name,bill,lastMonth,currentMonth}) => name.toLocaleLowerCase() === selectedCategory ||
+          bill === selectedCategory || currentMonth === selectedCategory || lastMonth === selectedCategory);
           console.log(filteredHistory);
           setFilteredBillingHistory(filteredHistory)
           } catch (error) {
@@ -76,7 +77,7 @@ const BillingApp = () => {
         inputRef.current.focus();
       }
      
-    },[filteredBillingHistory])
+    },[debounceQuery])
 
   return (
     <div className='bg-gray-100'>
