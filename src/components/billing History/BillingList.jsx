@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import BillingItem from "./BillingItem";
-import { FaPrint } from "react-icons/fa";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { FaPrint } from "react-icons/fa";
 
-const BillingList = ({ data }) => {
+
+const BillingList =  ({data}) => {
   const [startIndex,setStartIndex] = useState(0);
   const rowPerPage = 10;
 
@@ -17,14 +18,27 @@ const BillingList = ({ data }) => {
       setStartIndex(startIndex - rowPerPage);
     }
   }
+
+  const tableRef = useRef();
+
+ const handlePrint = () =>{
+  const originalContents = document.body.innerHTML; // Save original page
+    const printContents = tableRef.current.innerHTML; // Get only table
+
+    document.body.innerHTML = printContents; // Replace page content with table
+    window.print(); // Print table
+    document.body.innerHTML = originalContents; // Restore original page
+    window.location.reload();
+ }
+
   return (
     <div className="w-full max-w-full mx-auto  mt-8">
       <div className="mb-4 flex justify-end">
-        <button className=" flex gap-2 items-center bg-green-600 py-2 px-3  rounded  text-sm font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-green-700">
-          print <FaPrint siz={20} />
-        </button>
-      </div>
-      <div className="overflow-x-auto bg-white shadow rounded">
+              <button onClick={handlePrint} className=" flex gap-2 items-center bg-green-600 py-2 px-3  rounded  text-sm font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-green-700">
+                print <FaPrint siz={20} />
+              </button>
+            </div>
+      <div ref={tableRef} className="overflow-x-auto bg-white shadow rounded">
         <table className="min-w-full border border-gray-300">
           <thead className="bg-gray-200">
             <tr className="text-left">
@@ -80,3 +94,11 @@ const BillingList = ({ data }) => {
 };
 
 export default BillingList;
+
+
+
+
+
+
+
+
