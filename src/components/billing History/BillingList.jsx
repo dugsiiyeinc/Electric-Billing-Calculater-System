@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import BillingItem from "./BillingItem";
 import { FaPrint } from "react-icons/fa";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const BillingList = ({ data }) => {
+  const [startIndex,setStartIndex] = useState(0);
+  const rowPerPage = 10;
+
+  const handleNext  = () =>{
+    if(startIndex < data.length){
+      setStartIndex(startIndex + rowPerPage);
+    }
+  }
+  const handlePrev = () =>{
+    if(startIndex > 0){
+      setStartIndex(startIndex - rowPerPage);
+    }
+  }
   return (
     <div className="w-full max-w-full mx-auto  mt-8">
       <div className="mb-4 flex justify-end">
@@ -38,7 +52,7 @@ const BillingList = ({ data }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row) => (
+            {data.slice(startIndex, startIndex + rowPerPage).map((row) => (
               <BillingItem key={row.id} row={row} />
             ))}
               {
@@ -48,11 +62,17 @@ const BillingList = ({ data }) => {
         </table>
       </div>
       <div className="flex justify-between items-center mt-4">
-        <button className="bg-indigo-600 py-2 px-3  rounded  text-sm font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-indigo-700">
-          Previous
+        <button 
+        onClick={handlePrev}  
+        disabled={startIndex === 0}
+        className="flex items-center border py-2 px-2 rounded  text-sm font-medium bg-white capitalize text-black mt-2 cursor-pointer transition-colors duration-200  hover:bg-gray-300">
+          <MdNavigateBefore size={20} />   Previous 
         </button>
-        <button className="bg-indigo-600 py-2 px-3  rounded  text-sm font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-indigo-700">
-          Next
+        <button 
+          onClick={handleNext}  
+          disabled={startIndex + rowPerPage >= data.length}
+          className="flex items-center border py-2 px-3  rounded  text-sm font-medium bg-white capitalize text-black mt-2 cursor-pointer transition-colors duration-200  hover:bg-gray-300">
+          Next <MdNavigateNext size={20} />
         </button>
       </div>
     </div>
