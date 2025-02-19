@@ -40,6 +40,8 @@ const Login = () => {
     }
   };
 
+  const {username, password } = user;
+
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <Navbar />
@@ -56,7 +58,7 @@ const Login = () => {
             <input
               type="text"
               name="username"
-              value={user.username}
+              value={username}
               onChange={handleChange}
               placeholder="Enter username or email"
               className="w-full border border-gray-300 py-2 px-4 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
@@ -69,7 +71,7 @@ const Login = () => {
             <input
               type="password"
               name="password"
-              value={user.password}
+              value={password}
               onChange={handleChange}
               placeholder="Enter your password"
               className="w-full border border-gray-300 py-2 px-4 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"

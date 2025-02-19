@@ -21,7 +21,6 @@ const App = () => {
         <Route path="/register" element={<Registration />} />
         <Route path="/savedData" element={<BillingApp />} />
       </Routes>
-      <Toaster />
     </div>
   );
 };
