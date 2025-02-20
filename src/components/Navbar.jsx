@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 import { X, Menu } from "lucide-react";
-import {  NavLink } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-
+    const onlineUser = JSON.parse(localStorage.getItem("onlineUser")) || null;
+    console.log(onlineUser);
+    const navigate = useNavigate();
   const toggleDrawerBtn = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
+
+  const handleClick = () =>{
+    if(onlineUser){
+      localStorage.removeItem("onlineUser");
+      navigate("/login");
+    
+    }
+
+    navigate("/login");
+  }
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md" id="home">
@@ -57,12 +69,13 @@ const Navbar = () => {
         </ul>
 
         {/* Login Button (Desktop) */}
-        <NavLink
-          to="/login"
-          className="hidden lg:block bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700  transition-colors duration-200"
+        <button
+         
+          onClick={handleClick}
+          className={`hidden lg:block ${onlineUser ? "bg-rose-600 hover:bg-rose-700" : "bg-indigo-600 hover:bg-indigo-700"}  text-white px-4 py-2 rounded-lg shadow cursor-pointer   transition-colors duration-200`}
         >
-          Log In
-        </NavLink>
+         {onlineUser ? "Log out" : "Log In"} 
+        </button>
 
         {/* Mobile Menu Button */}
         <button
@@ -112,13 +125,13 @@ const Navbar = () => {
             </NavLink>
           </li>
             <li>
-              <NavLink
-                to="/login"
-                className="block bg-indigo-600 text-white mx-6 px-4 py-2 rounded-lg shadow hover:bg-indigo-700 transition"
-                onClick={toggleDrawerBtn}
-              >
-                Log In
-              </NavLink>
+            <button
+         
+         onClick={handleClick}
+         className={`blog lg:hidden ${onlineUser ? "bg-rose-600 hover:bg-rose-700" : "bg-indigo-600 hover:bg-indigo-700"}  text-white px-4 py-2 rounded-lg shadow cursor-pointer   transition-colors duration-200`}
+       >
+        {onlineUser ? "Log out" : "Log In"} 
+       </button>
             </li>
           </ul>
         </div>
