@@ -94,7 +94,14 @@ const BillingCalculator = () => {
   };
 
   const saveBill = () => {
-    navigate("/saved-data"); // Navigate to the SavedData page
+    const onlineUser = JSON.parse(localStorage.getItem("onlineUser")) || null;
+    if(onlineUser){
+      navigate("/savedData"); // Navigate to the SavedData page
+    }else{
+      toast.error("if you want to see saved data first Login !");
+      navigate("/login");
+    }
+   
   };
 
   return (

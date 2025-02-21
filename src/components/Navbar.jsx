@@ -5,7 +5,6 @@ import {  NavLink, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
     const onlineUser = JSON.parse(localStorage.getItem("onlineUser")) || null;
-    console.log(onlineUser);
     const navigate = useNavigate();
   const toggleDrawerBtn = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
@@ -49,14 +48,17 @@ const Navbar = () => {
               Exchange
             </NavLink>
           </li>
-          <li>
+          {
+            onlineUser && ( <li>
             <NavLink
               to="/savedData"
               className="hover:text-indigo-500 transition"
             >
               Saved data
             </NavLink>
-          </li>
+          </li>) 
+          }
+         
           <li>
             <NavLink
               to="/about"
