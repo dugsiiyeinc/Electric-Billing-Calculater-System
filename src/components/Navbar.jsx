@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X, Menu, User } from "lucide-react"; 
+import { X, Menu, User } from "lucide-react"; // Import User icon
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -21,14 +21,11 @@ const Navbar = () => {
   };
 
   const handleProfileClick = () => {
-    navigate("/profile");
+    navigate("/profile"); // Navigate to the profile page
   };
 
   return (
-    <nav
-      className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md"
-      id="home"
-    >
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md" id="home">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="text-xl font-semibold text-gray-800">
@@ -43,19 +40,13 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/billingCalculator"
-              className="hover:text-indigo-500 transition"
-            >
+            <NavLink to="/billingCalculator" className="hover:text-indigo-500 transition">
               Exchange
             </NavLink>
           </li>
           {onlineUser && (
             <li>
-              <NavLink
-                to="/savedData"
-                className="hover:text-indigo-500 transition"
-              >
+              <NavLink to="/savedData" className="hover:text-indigo-500 transition">
                 Saved data
               </NavLink>
             </li>
@@ -71,7 +62,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-4">
           {onlineUser && (
             <button
-              onClick={handleProfileClick}
+              onClick={handleProfileClick} // Navigate to profile page on click
               className="p-2 rounded-full hover:bg-gray-200 transition duration-200"
             >
               <User size={24} className="text-gray-700" />
@@ -79,11 +70,7 @@ const Navbar = () => {
           )}
           <button
             onClick={handleLogout}
-            className={`${
-              onlineUser
-                ? "bg-rose-600 hover:bg-rose-700"
-                : "bg-indigo-600 hover:bg-indigo-700"
-            } text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200`}
+            className={`${onlineUser ? "bg-rose-600 hover:bg-rose-700" : "bg-indigo-600 hover:bg-indigo-700"} text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200`}
           >
             {onlineUser ? "Log out" : "Log In"}
           </button>
@@ -108,19 +95,13 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/billingCalculator"
-                className="hover:text-indigo-500 transition"
-              >
+              <NavLink to="/billingCalculator" className="hover:text-indigo-500 transition">
                 Exchange
               </NavLink>
             </li>
             {onlineUser && (
               <li>
-                <NavLink
-                  to="/savedData"
-                  className="hover:text-indigo-500 transition"
-                >
+                <NavLink to="/savedData" className="hover:text-indigo-500 transition">
                   Saved data
                 </NavLink>
               </li>
@@ -130,14 +111,17 @@ const Navbar = () => {
                 About
               </NavLink>
             </li>
+            {onlineUser && (
+              <li>
+                <NavLink to="/profile" className="hover:text-indigo-500 transition">
+                  Profile
+                </NavLink>
+              </li>
+            )}
             <li>
               <button
                 onClick={handleLogout}
-                className={`${
-                  onlineUser
-                    ? "bg-rose-600 hover:bg-rose-700"
-                    : "bg-indigo-600 hover:bg-indigo-700"
-                } text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200`}
+                className={`${onlineUser ? "bg-rose-600 hover:bg-rose-700" : "bg-indigo-600 hover:bg-indigo-700"} text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200`}
               >
                 {onlineUser ? "Log out" : "Log In"}
               </button>
