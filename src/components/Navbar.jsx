@@ -33,8 +33,9 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/"
-              className="hover:text-indigo-500 transition"
-            >
+              className={({isActive}) => isActive ? "text-indigo-500 font-semibold transition" : "hover:text-indigo-500 transition"}
+              >
+          
               Home
             </NavLink>
           </li>
@@ -43,7 +44,7 @@ const Navbar = () => {
             <NavLink
               to="/billingCalculator"
 
-              className="hover:text-indigo-500 transition"
+              className={({isActive}) => isActive ? "text-indigo-500 font-semibold transition" : "hover:text-indigo-500 transition"}
             >
               Exchange
             </NavLink>
@@ -52,8 +53,8 @@ const Navbar = () => {
             onlineUser && ( <li>
             <NavLink
               to="/savedData"
-              className="hover:text-indigo-500 transition"
-            >
+              className={({isActive}) => isActive ? "text-indigo-500 font-semibold transition" : "hover:text-indigo-500 transition"}
+              >
               Saved data
             </NavLink>
           </li>) 
@@ -62,8 +63,8 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/about"
-              className="hover:text-indigo-500 transition"
-            >
+              className={({isActive}) => isActive ? "text-indigo-500 font-semibold transition" : "hover:text-indigo-500 transition"}
+              >
               About
             </NavLink>
           </li>
