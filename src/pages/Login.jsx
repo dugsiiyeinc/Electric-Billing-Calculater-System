@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -15,14 +16,22 @@ const Login = () => {
         setUser((prev) => ({...prev, [name]:value}));
     }
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) =>{
         e.preventDefault();
+        if(!user.username.trim() || !user.password.trim()){
+          toast.error("please fill all inputs");
+          return;
+        }
         const oldUsers = JSON.parse(localStorage.getItem("users")) || [];
       const existUser = oldUsers.find(u => (u.username === user.username || 
         u.email === user.username) && u.password === user.password);
 
         if(existUser){
             localStorage.setItem("onlineUser",JSON.stringify(existUser));
+            toast.success("user login successfully");
+            navigate("/billingCalculator")
         }else{
         
             toast.error("invalid credentials!")
@@ -59,13 +68,12 @@ const Login = () => {
           />
           
         </div>
-        <button
-          type="submit"
+        <button type="submit"
           className="bg-indigo-600 py-2 px-3 w-full rounded  text-lg font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200  hover:bg-indigo-700"
         >
          Login
         </button>
-        <p className="text-center text-gray-700">New to Electric Billing! <a className="text-indigo-600 hover:text-indigo-700 cursor-pointer">Sign up </a></p>
+        <p className="text-center text-gray-700">New to Electric Billing? <Link  to="/register" className="text-indigo-600 hover:text-indigo-700 cursor-pointer">Sign up </Link></p>
       </form>
      
     </div>

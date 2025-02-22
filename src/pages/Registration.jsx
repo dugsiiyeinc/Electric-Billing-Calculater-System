@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Registration = () => {
@@ -22,9 +23,8 @@ const Registration = () => {
     password:"",
     confirmPassword:""
   });
-
-  const [users,setUsers] = useState(JSON.parse(localStorage.getItem("users")) ||[]);
  
+  const  navigate = useNavigate();
 
   const [errors,setErrors] = useState({});
    
@@ -66,7 +66,7 @@ const Registration = () => {
       error = "password must at least one lowercase latter"
     }else if(!/[0-9]/.test(value)){
       error = "password must at least one number"
-    }else if(!/[!@#$%&*]/.test(value)){
+    }else if(!/[!@#$%^&*()_+{}:;"'<>,.?\/\\|-]/.test(value)){
       error = "password must at least one special character"
     }else if(value.length > 32){
       error = "please doesn`t greater than 32 characters!";
@@ -127,11 +127,14 @@ const Registration = () => {
           return;
         }else{
           console.log(registrationData);
-          setUsers([...users,registrationData]);
-          console.log(users);
-          localStorage.setItem("users",JSON.stringify(users));
+          const updatedUsers = [...oldUsers,registrationData];
+          console.log(updatedUsers);
+          
+          localStorage.setItem("users",JSON.stringify(updatedUsers));
           toast.success("user registration successfully");
+          navigate("/login");
           reset();
+
         }
      
     
@@ -252,7 +255,7 @@ const Registration = () => {
           >
             submit
           </button>
-          <p className="text-center text-gray-700">Al ready have a user! <a className="text-indigo-600 hover:text-indigo-700 cursor-pointer">Sign in </a></p>
+          <p className="text-center text-gray-700">Al ready have an account ? <Link to="/login" className="text-indigo-600 hover:text-indigo-700 cursor-pointer">Sign in </Link></p>
         </form>
        
       </div>
