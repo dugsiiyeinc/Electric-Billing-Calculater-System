@@ -34,15 +34,10 @@ const Navbar = () => {
         {/* Desktop Navigation Links */}
         <ul className="hidden lg:flex space-x-8 text-gray-600 text-lg font-normal cursor-pointer">
           <li>
-
             <NavLink
               to="/"
               className={({isActive}) => isActive ? "text-indigo-500 font-semibold transition" : "hover:text-indigo-500 transition"}
               >
-          
-
-            <NavLink to="/" className="hover:text-indigo-500 transition">
-
               Home
             </NavLink>
           </li>
@@ -50,11 +45,8 @@ const Navbar = () => {
             <NavLink
               to="/billingCalculator"
 
-
               className={({isActive}) => isActive ? "text-indigo-500 font-semibold transition" : "hover:text-indigo-500 transition"}
-
-              className="hover:text-indigo-500 transition"
-
+              
             >
               Exchange
             </NavLink>
@@ -75,19 +67,6 @@ const Navbar = () => {
               to="/about"
               className={({isActive}) => isActive ? "text-indigo-500 font-semibold transition" : "hover:text-indigo-500 transition"}
               >
-
-          {onlineUser && (
-            <li>
-              <NavLink
-                to="/savedData"
-                className="hover:text-indigo-500 transition"
-              >
-                Saved data
-              </NavLink>
-            </li>
-          )}
-          <li>
-            <NavLink to="/about" className="hover:text-indigo-500 transition">
 
               About
             </NavLink>
