@@ -4,10 +4,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import BillingCalculator from "./components/BillingCalculator";
 import Login from "./pages/Login";
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 import BillingApp from "./components/billing History/BillingApp";
 
-// import ProfileApp from "./components/profile Management/ProfileApp";
 import Registration from "./pages/Registration";
 
 
@@ -22,9 +21,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/savedData" element={<BillingApp />} />
-        {/* <ProfileApp/> */}
       </Routes>
-      <Toaster />
+      {/* <Toaster /> */}
     </div>
   );
 };
