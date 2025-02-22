@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X, Menu, User } from "lucide-react"; // Import User icon
+import { X, Menu, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -12,20 +12,19 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    if (onlineUser) {
-      localStorage.removeItem("onlineUser");
-      navigate("/login");
-    } else {
-      navigate("/login");
-    }
+    localStorage.removeItem("onlineUser");
+    navigate("/login");
   };
 
   const handleProfileClick = () => {
-    navigate("/profile"); // Navigate to the profile page
+    navigate("/profile");
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md" id="home">
+    <nav
+      className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md"
+      id="home"
+    >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="text-xl font-semibold text-gray-800">
@@ -40,13 +39,19 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/billingCalculator" className="hover:text-indigo-500 transition">
+            <NavLink
+              to="/billingCalculator"
+              className="hover:text-indigo-500 transition"
+            >
               Exchange
             </NavLink>
           </li>
           {onlineUser && (
             <li>
-              <NavLink to="/savedData" className="hover:text-indigo-500 transition">
+              <NavLink
+                to="/savedData"
+                className="hover:text-indigo-500 transition"
+              >
                 Saved data
               </NavLink>
             </li>
@@ -62,15 +67,28 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-4">
           {onlineUser && (
             <button
-              onClick={handleProfileClick} // Navigate to profile page on click
+              onClick={handleProfileClick}
               className="p-2 rounded-full hover:bg-gray-200 transition duration-200"
+              aria-label="Profile"
             >
-              <User size={24} className="text-gray-700" />
+              {onlineUser.profilePic ? (
+                <img
+                  src={onlineUser.profilePic}
+                  alt="Profile"
+                  className="w-8 h-8 rounded-full"
+                />
+              ) : (
+                <User size={24} className="text-gray-700" />
+              )}
             </button>
           )}
           <button
-            onClick={handleLogout}
-            className={`${onlineUser ? "bg-rose-600 hover:bg-rose-700" : "bg-indigo-600 hover:bg-indigo-700"} text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200`}
+            onClick={onlineUser ? handleLogout : () => navigate("/login")}
+            className={`${
+              onlineUser
+                ? "bg-rose-600 hover:bg-rose-700"
+                : "bg-indigo-600 hover:bg-indigo-700"
+            } text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200`}
           >
             {onlineUser ? "Log out" : "Log In"}
           </button>
@@ -80,6 +98,7 @@ const Navbar = () => {
         <button
           className="lg:hidden p-2 rounded-md text-gray-700 focus:outline-none"
           onClick={toggleDrawerBtn}
+          aria-label="Toggle Menu"
         >
           {mobileDrawerOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -90,38 +109,62 @@ const Navbar = () => {
         <div className="lg:hidden bg-white shadow-md py-4 absolute w-full left-0 top-full">
           <ul className="flex flex-col space-y-4 text-center text-gray-600 text-lg">
             <li>
-              <NavLink to="/" className="hover:text-indigo-500 transition">
+              <NavLink
+                to="/"
+                className="hover:text-indigo-500 transition"
+                onClick={toggleDrawerBtn}
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/billingCalculator" className="hover:text-indigo-500 transition">
+              <NavLink
+                to="/billingCalculator"
+                className="hover:text-indigo-500 transition"
+                onClick={toggleDrawerBtn}
+              >
                 Exchange
               </NavLink>
             </li>
             {onlineUser && (
               <li>
-                <NavLink to="/savedData" className="hover:text-indigo-500 transition">
+                <NavLink
+                  to="/savedData"
+                  className="hover:text-indigo-500 transition"
+                  onClick={toggleDrawerBtn}
+                >
                   Saved data
                 </NavLink>
               </li>
             )}
             <li>
-              <NavLink to="/about" className="hover:text-indigo-500 transition">
+              <NavLink
+                to="/about"
+                className="hover:text-indigo-500 transition"
+                onClick={toggleDrawerBtn}
+              >
                 About
               </NavLink>
             </li>
             {onlineUser && (
               <li>
-                <NavLink to="/profile" className="hover:text-indigo-500 transition">
+                <NavLink
+                  to="/profile"
+                  className="hover:text-indigo-500 transition"
+                  onClick={toggleDrawerBtn}
+                >
                   Profile
                 </NavLink>
               </li>
             )}
             <li>
               <button
-                onClick={handleLogout}
-                className={`${onlineUser ? "bg-rose-600 hover:bg-rose-700" : "bg-indigo-600 hover:bg-indigo-700"} text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200`}
+                onClick={onlineUser ? handleLogout : () => navigate("/login")}
+                className={`${
+                  onlineUser
+                    ? "bg-rose-600 hover:bg-rose-700"
+                    : "bg-indigo-600 hover:bg-indigo-700"
+                } text-white px-4 py-2 rounded-lg shadow cursor-pointer transition-colors duration-200 w-full`}
               >
                 {onlineUser ? "Log out" : "Log In"}
               </button>
