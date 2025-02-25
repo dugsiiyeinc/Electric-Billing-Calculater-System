@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import ProfilePage from "./components/profile Management/ProfilePage";
 
 
-const router = createBrowserRouter([
+const router =  createBrowserRouter([
     {
         path:"/",
         element:<App />,
