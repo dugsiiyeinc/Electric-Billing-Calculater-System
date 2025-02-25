@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { X, Menu, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const onlineUser = JSON.parse(localStorage.getItem("onlineUser")) || null;
   const navigate = useNavigate();
+  
 
   const toggleDrawerBtn = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
