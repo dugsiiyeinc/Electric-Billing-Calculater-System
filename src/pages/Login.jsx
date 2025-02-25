@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -10,6 +11,7 @@ const Login = () => {
     password: "",
   });
 
+  const {isAuthenticated,login} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -34,7 +36,10 @@ const Login = () => {
     if (existUser) {
       localStorage.setItem("onlineUser", JSON.stringify(existUser));
       toast.success("User login successful!");
-      navigate("/billingCalculator");
+
+        login();
+        navigate("/billingCalculator");
+  
     } else {
       toast.error(
         "Invalid credentials. Please check your username/email and password."

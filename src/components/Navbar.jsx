@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { X, Menu, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const onlineUser = JSON.parse(localStorage.getItem("onlineUser")) || null;
   const navigate = useNavigate();
+  const {isAuthenticated,logout} = useContext(AuthContext)
 
   const toggleDrawerBtn = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
 
   const handleLogout = () => {
+    logout();
     localStorage.removeItem("onlineUser");
     navigate("/login");
   };
@@ -57,7 +60,7 @@ const Navbar = () => {
               Exchange
             </NavLink>
           </li>
-          {onlineUser && (
+          {isAuthenticated && (
             <li>
               <NavLink
                 to="/savedData"

@@ -2,11 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/Home";
 import About from "./pages/About";
-import BillingApp from "./components/billing History/BillingApp";
 import BillingCalculator from "./components/BillingCalculator";
 import Login from "./pages/Login";
 import ProfilePage from "./components/profile Management/ProfilePage";
 import SavedData from "./pages/SavedData";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 
 const router =  createBrowserRouter([
@@ -25,7 +25,7 @@ const router =  createBrowserRouter([
             },
             {
                 path:"/savedData",
-                element:<SavedData />
+                element: <ProtectedRoutes element={<SavedData />}/>
 
             },
             {
