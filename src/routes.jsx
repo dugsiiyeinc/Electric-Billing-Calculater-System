@@ -6,6 +6,7 @@ import BillingApp from "./components/billing History/BillingApp";
 import BillingCalculator from "./components/BillingCalculator";
 import Login from "./pages/Login";
 import ProfilePage from "./components/profile Management/ProfilePage";
+import SavedData from "./pages/SavedData";
 
 
 const router =  createBrowserRouter([
@@ -24,7 +25,7 @@ const router =  createBrowserRouter([
             },
             {
                 path:"/savedData",
-                element:<BillingApp />
+                element:<SavedData />
 
             },
             {
