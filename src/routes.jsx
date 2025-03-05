@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import ProfilePage from "./components/profile Management/ProfilePage";
 import SavedData from "./pages/SavedData";
 import ProtectedRoutes from "./ProtectedRoutes";
+import Registration from "./pages/Registration";
 
 
 const router =  createBrowserRouter([
@@ -37,6 +38,10 @@ const router =  createBrowserRouter([
                 path:"/login",
                 element:<Login />
 
+            },
+            {
+                path:"/register",
+                element:<Registration/>
             },
             {
                 path:"/profile",
