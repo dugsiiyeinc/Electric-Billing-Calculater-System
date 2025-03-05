@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
-import { Link,  useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -21,7 +20,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!user.username.trim() || !user.password.trim()) {
-      toast.error("Please fill in all inputs.");
+      toast.error("Please fill in all fields.");
       return;
     }
 
@@ -34,9 +33,8 @@ const Login = () => {
 
     if (existUser) {
       localStorage.setItem("onlineUser", JSON.stringify(existUser));
-      toast.success("User login successful!");
-        navigate("/billingCalculator");
-  
+      toast.success("Login successful!");
+      navigate("/billingCalculator");
     } else {
       toast.error(
         "Invalid credentials. Please check your username/email and password."
@@ -45,49 +43,63 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex justify-center items-center px-4 py-16">
+      <div className="flex-grow flex justify-center items-center px-4 py-16">
         <form
           onSubmit={handleSubmit}
-          className="bg-white w-md py-6 px-4 rounded-lg space-y-2"
+          className="bg-white w-full max-w-md py-6 px-8 rounded-lg space-y-6 shadow-lg"
         >
-          <h2 className="text-2xl text-center mb-4 font-bold">Login</h2>
-          <div className="flex flex-col space-y-2">
-            <input
-              type="text"
-              name="username"
-              value={user.username}
-              onChange={handleChange}
-              placeholder="Enter username or Email"
-              className="w-full border border-gray-300 py-1 px-3 rounded"
-            />
+          <h2 className="text-3xl text-center font-bold text-indigo-600 mb-4">
+            Login to Your Account
+          </h2>
+
+          <div className="flex flex-col space-y-4">
+            <div className="relative">
+              <input
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+                placeholder="Enter username or email"
+                className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                aria-label="Username or Email"
+                required
+              />
+            </div>
+
+            <div className="relative">
+              <input
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                aria-label="Password"
+                required
+              />
+            </div>
           </div>
-          <div className="flex flex-col space-y-2">
-            <input
-              type="password"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-              placeholder="Enter Your password"
-              className="w-full border border-gray-300 py-1 px-3 rounded"
-            />
-          </div>
+
           <button
             type="submit"
-            className="bg-indigo-600 py-2 px-3 w-full rounded text-lg font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200 hover:bg-indigo-700"
+            className="bg-indigo-600 py-3 px-4 w-full rounded-lg text-xl font-medium text-white hover:bg-indigo-700 transition-all duration-200"
           >
             Login
           </button>
-          <p className="text-center text-gray-700">
-            New to Electric Billing?{" "}
-            <Link
-              to="/register"
-              className="text-indigo-600 hover:text-indigo-700 cursor-pointer"
-            >
-              Sign up
-            </Link>
-          </p>
+
+          <div className="text-center mt-4">
+            <p className="text-md md:text-lg lg:text-xl text-gray-600">
+              New to Electric Billing?{" "}
+              <Link
+                to="/register"
+                className="text-indigo-600 hover:text-indigo-700 font-semibold"
+              >
+                Sign up
+              </Link>
+            </p>
+          </div>
         </form>
       </div>
       <Footer />
