@@ -1,46 +1,98 @@
-// TeamSection.jsx
 import React from "react";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaFacebook, FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 const TeamMembers = () => {
   const teamMembersData = [
     {
       name: "Faarax Abdullahi",
       role: "Frontend Developer",
-      imageUrl:
-        "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      imageUrl: "https://dhaqso-pay-website.vercel.app/assets/team/faarax.JPG",
+      socialMedia: {
+        facebook: "https://www.facebook.com/awrecabdullaahi.cali/",
+        github: "https://github.com/faaraxcabdulaahi",
+        twitter: "https://x.com/FaarahCabdulahi",
+        linkedin: "https://linkedin.com/in/faarax",
+      },
     },
     {
       name: "Shiine dev",
       role: "Frontend Developer",
-      imageUrl:
-        "https://images.unsplash.com/photo-1482961674540-0b0e8363a005?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      imageUrl: "https://dhaqso-pay-website.vercel.app/assets/team/shiine.jpg",
+      socialMedia: {
+        facebook: "https://www.facebook.com/abdihakin.adan.56",
+        github: "https://github.com/shiinedev",
+        twitter: "https://x.com/shiinedev",
+        linkedin: "https://linkedin.com/in/shiine",
+      },
     },
   ];
+
   return (
-    <div className="mt-12 ">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-        Our Team
+    <div className="mt-16 py-16 ">
+      <h2 className="text-4xl font-extrabold text-gray-800 mb-12 text-center">
+        Meet Our Team
       </h2>
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="flex flex-wrap justify-center gap-8 px-4">
         {teamMembersData.map((member, index) => (
           <div
             key={index}
-            className="bg-gray-50 rounded-lg shadow-md p-6 w-full lg:w-72 text-center"
+            className="bg-white rounded-xl shadow-lg p-6 w-full sm:w-80 transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-indigo-500 border-2 border-transparent"
           >
-            {member.imageUrl ? (
-              <img
-                src={member.imageUrl}
-                alt={member.name}
-                className="w-24 h-24 rounded-full mx-auto mb-4 object-center object-cover"
-              />
-            ) : (
-              <FaUserCircle className="w-24 h-24 text-gray-400 mx-auto mb-4" />
-            )}
-            <h3 className="text-xl font-semibold text-gray-800">
-              {member.name}
-            </h3>
-            <p className="text-gray-600">{member.role}</p>
+            <div className="relative block">
+              {member.imageUrl ? (
+                <img
+                  src={member.imageUrl}
+                  alt={member.name}
+                  className="rounded-full mx-auto mb-6 object-cover w-32 h-32 border-4 border-indigo-600 hover:border-indigo-700 transition-all duration-300"
+                />
+              ) : (
+                <FaUserCircle className="w-32 h-32 text-indigo-600 mx-auto mb-6" />
+              )}
+            </div>
+            <h3 className="text-2xl text-center font-semibold text-gray-800 mb-2">{member.name}</h3>
+            <p className="text-gray-600 text-center text-lg mb-6">{member.role}</p>
+            <div className="flex justify-center  space-x-6">
+              {member.socialMedia.facebook && (
+                <a
+                  href={member.socialMedia.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-indigo-600 transition-all duration-300"
+                >
+                  <FaFacebook className="w-7 h-7" />
+                </a>
+              )}
+              {member.socialMedia.github && (
+                <a
+                  href={member.socialMedia.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-indigo-600 transition-all duration-300"
+                >
+                  <FaGithub className="w-7 h-7" />
+                </a>
+              )}
+              {member.socialMedia.twitter && (
+                <a
+                  href={member.socialMedia.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-indigo-600 transition-all duration-300"
+                >
+                  <FaTwitter className="w-7 h-7" />
+                </a>
+              )}
+              {member.socialMedia.linkedin && (
+                <a
+                  href={member.socialMedia.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-indigo-600 transition-all duration-300"
+                >
+                  <FaLinkedin className="w-7 h-7" />
+                </a>
+              )}
+            </div>
           </div>
         ))}
       </div>

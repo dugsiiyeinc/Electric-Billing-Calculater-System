@@ -129,7 +129,9 @@ const Registration = () => {
       );
 
       if (existUser) {
-        toast.error("User already exists. Please use a unique email and username.");
+        toast.error(
+          "User already exists. Please use a unique email and username."
+        );
         return;
       } else {
         const updatedUsers = [...oldUsers, registrationData];
@@ -158,18 +160,28 @@ const Registration = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
       <div className="flex justify-center items-center px-4 py-16">
         <form
           onSubmit={handleSubmit}
-          className="bg-white w-md py-6 px-4 rounded-lg space-y-2"
+          className="bg-white w-full sm:w-80 md:w-96 lg:w-1/3 py-8 px-10 rounded-lg space-y-6 shadow-lg ring-1 ring-gray-200"
         >
-          <h2 className="text-2xl text-center mb-4 font-bold">Registration</h2>
+          {/* Return Home Link */}
+          <Link
+            to="/"
+            className="text-indigo-600 hover:text-indigo-800 text-sm md:text-md lg:text-lg mb-6 block text-center"
+          >
+            &larr; Return Home
+          </Link>
+
+          <h2 className="text-2xl text-center mb-6 font-semibold text-gray-800">
+            Registration
+          </h2>
 
           {/* Profile Picture Upload */}
-          <div className="flex flex-col space-y-2">
-            <label className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 focus:outline-none p-2 text-center">
+          <div className="flex flex-col space-y-2 items-center">
+            <label className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 focus:outline-none p-3 text-center">
               Upload Profile Picture
               <input
                 type="file"
@@ -182,7 +194,7 @@ const Registration = () => {
               <img
                 src={registrationData.profilePic}
                 alt="Profile Preview"
-                className="w-20 h-20 rounded-full mx-auto"
+                className="w-24 h-24 rounded-full mx-auto mt-4 border-2 border-indigo-600"
               />
             )}
           </div>
@@ -195,7 +207,7 @@ const Registration = () => {
               value={registrationData.username}
               onChange={handleChange}
               placeholder="Enter username"
-              className="w-full border border-gray-300 py-1 px-3 rounded"
+              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
             />
             {errors.username && (
               <p className="text-sm text-red-500">{errors.username}</p>
@@ -210,7 +222,7 @@ const Registration = () => {
               value={registrationData.email}
               onChange={handleChange}
               placeholder="Enter Your Email"
-              className="w-full border border-gray-300 py-1 px-3 rounded"
+              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
             />
             {errors.email && (
               <p className="text-sm text-red-500">{errors.email}</p>
@@ -225,7 +237,7 @@ const Registration = () => {
               value={registrationData.phone}
               onChange={handleChange}
               placeholder="Enter Your Phone"
-              className="w-full border border-gray-300 py-1 px-3 rounded"
+              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
             />
             {errors.phone && (
               <p className="text-sm text-red-500">{errors.phone}</p>
@@ -238,7 +250,7 @@ const Registration = () => {
               name="defaultCompany"
               value={registrationData.defaultCompany}
               onChange={handleChange}
-              className="w-full border border-gray-300 py-1 px-3 rounded"
+              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
             >
               <option value="">Select Default company</option>
               {companies.map((company, index) => (
@@ -257,31 +269,16 @@ const Registration = () => {
             <input
               type="password"
               name="password"
-              min={8}
-              max={32}
               value={registrationData.password}
               onChange={handleChange}
-              placeholder="Enter Your password"
-              className="w-full border border-gray-300 py-1 px-3 rounded"
+              placeholder="Enter Password"
+              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
             />
             {errors.password && (
               <p className="text-sm text-red-500">{errors.password}</p>
             )}
             {passwordStrength && (
-              <p className="text-sm text-gray-600">
-                Password Strength:{" "}
-                <span
-                  className={`${
-                    passwordStrength === "Weak"
-                      ? "text-red-500"
-                      : passwordStrength === "Medium"
-                      ? "text-yellow-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  {passwordStrength}
-                </span>
-              </p>
+              <p className="text-sm text-green-600">{passwordStrength}</p>
             )}
           </div>
 
@@ -292,8 +289,8 @@ const Registration = () => {
               name="confirmPassword"
               value={registrationData.confirmPassword}
               onChange={handleChange}
-              placeholder="Confirm Your Password"
-              className="w-full border border-gray-300 py-1 px-3 rounded"
+              placeholder="Confirm Password"
+              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
             />
             {errors.confirmPassword && (
               <p className="text-sm text-red-500">{errors.confirmPassword}</p>
@@ -301,25 +298,17 @@ const Registration = () => {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-indigo-600 py-2 px-3 w-full rounded text-lg font-medium capitalize text-white mt-2 cursor-pointer transition-colors duration-200 hover:bg-indigo-700"
-          >
-            Submit
-          </button>
-
-          {/* Login Link */}
-          <p className="text-center text-gray-700">
-            Already have an account?{" "}
-            <Link
-              to="/login"
-              className="text-indigo-600 hover:text-indigo-700 cursor-pointer"
+          <div className="text-center mt-4">
+            <button
+              type="submit"
+              className="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-indigo-700  transition"
             >
-              Sign in
-            </Link>
-          </p>
+              Register
+            </button>
+          </div>
         </form>
       </div>
+
       <Footer />
     </div>
   );

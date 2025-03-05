@@ -11,13 +11,6 @@ const BillingItem = ({row}) => {
       <td className="border border-gray-300 text-sm  p-2">
         {row.currentMonth}
       </td>
-      <td
-        className={`border border-gray-300 text-sm  p-2 ${
-          row.profit < 0 ? "text-red-500" : "text-green-500"
-        }`}
-      >
-        {row.profit}
-      </td>
     </tr>
   );
 };
