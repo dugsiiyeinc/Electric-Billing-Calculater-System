@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
-  const companies = ["Beco", "Mogadishu Power", "Blue Sky"];
+  const companies = ["Beco", "Mogadishu Power", "Blue Sky","Som Power" , "NEC"];
 
   const [registrationData, setRegistrationData] = useState({
     username: "",

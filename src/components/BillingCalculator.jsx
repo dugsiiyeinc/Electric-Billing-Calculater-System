@@ -4,12 +4,14 @@ import CustomToaster from "./CustomeToaster";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
-import { FaRegSave, FaSyncAlt, FaCalculator } from "react-icons/fa"; // Add icons
+import { FaRegSave, FaSyncAlt, FaCalculator } from "react-icons/fa";
 
 const companyRates = {
   Beco: 0.42,
   SomPower: 0.5,
   NEC: 0.45,
+  MogadishuPower:0.55,
+  BlueSky: 0.6
 };
 
 const BillingCalculator = () => {
@@ -17,6 +19,7 @@ const BillingCalculator = () => {
   const [units, setUnits] = useState("");
   const [billAmount, setBillAmount] = useState(null);
   const [error, setError] = useState("");
+  const [lastCalculatedBill, setLastCalculatedBill] = useState(null);
   const navigate = useNavigate();
 
   const calculateBill = () => {
@@ -37,9 +40,9 @@ const BillingCalculator = () => {
       const total = unitConsumed * companyRates[company];
       setBillAmount(total.toFixed(2));
 
-      // Save the bill to local storage in the required format
+      // Store the latest calculation in state but NOT in localStorage
       const bill = {
-        id: Date.now(), // Unique ID for each bill
+        id: Date.now(),
         name: company,
         bill: unitConsumed,
         rate: companyRates[company],
@@ -47,7 +50,7 @@ const BillingCalculator = () => {
         currentMonth: total.toFixed(2),
       };
 
-      saveBillToLocalStorage(bill);
+      setLastCalculatedBill(bill); // Store the bill in state only
       setUnits("");
       toast.success("Bill calculated successfully!");
     }
@@ -55,28 +58,35 @@ const BillingCalculator = () => {
 
   const getLastBillAmount = () => {
     const savedBills = JSON.parse(localStorage.getItem("savedBills")) || [];
-    return savedBills.length > 0
-      ? savedBills[savedBills.length - 1].currentMonth
-      : 0;
+    return savedBills.length > 0 ? savedBills[savedBills.length - 1].currentMonth : 0;
   };
 
-  const saveBillToLocalStorage = (bill) => {
+  const saveBillToLocalStorage = () => {
+    if (!lastCalculatedBill) {
+      toast.error("No bill calculated to save!");
+      return;
+    }
+
     const savedBills = JSON.parse(localStorage.getItem("savedBills")) || [];
-    savedBills.push(bill);
+    savedBills.push(lastCalculatedBill);
     localStorage.setItem("savedBills", JSON.stringify(savedBills));
+
+    toast.success("Bill saved successfully!");
   };
 
   const resetBill = () => {
     setBillAmount(null);
     setUnits("");
     setError("");
+    setLastCalculatedBill(null);
     toast.info("Bill reset successfully!");
   };
 
   const saveBill = () => {
+    saveBillToLocalStorage();
     const onlineUser = JSON.parse(localStorage.getItem("onlineUser")) || null;
     if (onlineUser) {
-      navigate("/savedData"); // Navigate to the SavedData page
+      navigate("/savedData");
     } else {
       toast.error("If you want to see saved data, please log in first!");
       navigate("/login");
@@ -95,10 +105,7 @@ const BillingCalculator = () => {
 
           <div className="space-y-6">
             <div>
-              <label
-                htmlFor="company"
-                className="block text-lg font-medium text-gray-700"
-              >
+              <label htmlFor="company" className="block text-lg font-medium text-gray-700">
                 Select Company
               </label>
               <select
@@ -117,16 +124,11 @@ const BillingCalculator = () => {
 
             <div className="text-lg font-medium text-center">
               Electric Rate:{" "}
-              <span className="font-bold text-indigo-600">
-                {companyRates[company]} per unit
-              </span>
+              <span className="font-bold text-indigo-600">{companyRates[company]} per unit</span>
             </div>
 
             <div>
-              <label
-                htmlFor="units"
-                className="block text-lg font-medium text-gray-700"
-              >
+              <label htmlFor="units" className="block text-lg font-medium text-gray-700">
                 Enter Consumed Units
               </label>
               <input
@@ -138,9 +140,7 @@ const BillingCalculator = () => {
                 className="w-full h-12 border border-gray-300 rounded-md px-4 text-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
               />
               {error && (
-                <div className="text-red-600 text-center text-sm font-medium mt-1">
-                  {error}
-                </div>
+                <div className="text-red-600 text-center text-sm font-medium mt-1">{error}</div>
               )}
             </div>
 
