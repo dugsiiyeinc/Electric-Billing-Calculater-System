@@ -16,6 +16,17 @@ const companies = [
     name: "NEC",
     rate: 0.45,
   },
+  {
+    id: 4,
+    name: "Mogadishu Power",
+    rate: 0.55,
+  },
+  {
+    id: 5,
+    name: "Blue Sky",
+    rate: 0.6,
+  },
+  
 ];
 
 const BillingForm = ({ setSelectedCategory }) => {

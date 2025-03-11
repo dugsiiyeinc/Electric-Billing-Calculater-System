@@ -10,6 +10,8 @@ const companyRates = {
   Beco: 0.42,
   SomPower: 0.5,
   NEC: 0.45,
+  MogadishuPower:0.55,
+  BlueSky: 0.6
 };
 
 const BillingCalculator = () => {
