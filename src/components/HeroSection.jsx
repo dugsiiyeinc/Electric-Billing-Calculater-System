@@ -33,7 +33,7 @@ const Hero = () => {
         <section>
           <div className="flex flex-col md:flex-row justify-center gap-4">
             <Link
-              to="/billing-calculater"
+              to="/billingCalculator"
               className="bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:bg-blue-100 transition-transform duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold"
               aria-label="Calculate your electricity usage"
             >
