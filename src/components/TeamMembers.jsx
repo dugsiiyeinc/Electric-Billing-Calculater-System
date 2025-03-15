@@ -11,7 +11,7 @@ const TeamMembers = () => {
         facebook: "https://www.facebook.com/awrecabdullaahi.cali/",
         github: "https://github.com/faaraxcabdulaahi",
         twitter: "https://x.com/FaarahCabdulahi",
-        linkedin: "https://linkedin.com/in/faarax",
+        linkedin: "https://www.linkedin.com/in/faarax-cabdulaahi-576500282/",
       },
     },
     {
@@ -22,7 +22,7 @@ const TeamMembers = () => {
         facebook: "https://www.facebook.com/abdihakin.adan.56",
         github: "https://github.com/shiinedev",
         twitter: "https://x.com/shiinedev",
-        linkedin: "https://linkedin.com/in/shiine",
+        linkedin: "https://linkedin.com/in/shiinedev",
       },
     },
   ];
