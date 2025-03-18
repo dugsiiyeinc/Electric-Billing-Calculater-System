@@ -207,7 +207,7 @@ const Registration = () => {
               value={registrationData.username}
               onChange={handleChange}
               placeholder="Enter username"
-              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
+              className="w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 py-3 px-4 rounded-lg text-lg "
             />
             {errors.username && (
               <p className="text-sm text-red-500">{errors.username}</p>
@@ -222,7 +222,7 @@ const Registration = () => {
               value={registrationData.email}
               onChange={handleChange}
               placeholder="Enter Your Email"
-              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
+              className="w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 py-3 px-4 rounded-lg text-lg "
             />
             {errors.email && (
               <p className="text-sm text-red-500">{errors.email}</p>
@@ -237,7 +237,7 @@ const Registration = () => {
               value={registrationData.phone}
               onChange={handleChange}
               placeholder="Enter Your Phone"
-              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
+              className="w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 py-3 px-4 rounded-lg text-lg "
             />
             {errors.phone && (
               <p className="text-sm text-red-500">{errors.phone}</p>
@@ -250,7 +250,7 @@ const Registration = () => {
               name="defaultCompany"
               value={registrationData.defaultCompany}
               onChange={handleChange}
-              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
+              className="w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 py-3 px-4 rounded-lg text-lg "
             >
               <option value="">Select Default company</option>
               {companies.map((company, index) => (
@@ -272,7 +272,7 @@ const Registration = () => {
               value={registrationData.password}
               onChange={handleChange}
               placeholder="Enter Password"
-              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
+              className="w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 py-3 px-4 rounded-lg text-lg "
             />
             {errors.password && (
               <p className="text-sm text-red-500">{errors.password}</p>
@@ -290,7 +290,7 @@ const Registration = () => {
               value={registrationData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirm Password"
-              className="w-full border border-gray-300 py-3 px-4 rounded-lg text-lg "
+              className="w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 py-3 px-4 rounded-lg text-lg "
             />
             {errors.confirmPassword && (
               <p className="text-sm text-red-500">{errors.confirmPassword}</p>
